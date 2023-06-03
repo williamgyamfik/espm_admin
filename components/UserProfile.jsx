@@ -27,7 +27,7 @@ const UserProfile = (props) => {
   }
 
   return (
-    <div className="w-64  absolute z-50 bg-white right-2 top-10 p-8 border shadow-lg rounded-lg">
+    <div className="w-64  absolute z-50 bg-white right-2 top-20 p-8 border shadow-lg rounded-lg">
       <div className="flex justify-between mb-5 ">
         <h2 className="font-semibold">User profile</h2>
         <div onClick={closeUserProfile}>

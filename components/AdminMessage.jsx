@@ -7,7 +7,7 @@ const AdminMessage = (props) => {
   };
 
   return (
-    <div className="w-64   absolute z-50 bg-white right-10 top-10 cursor-pointer p-8 border shadow-lg rounded-lg">
+    <div className="w-64   absolute z-50 bg-white right-10 top-20 cursor-pointer p-8 border shadow-lg rounded-lg">
       <div className="flex justify-between items-center">
         <h2 className="font-semibold">Message</h2>
         <div onClick={closeMessageHandler}>

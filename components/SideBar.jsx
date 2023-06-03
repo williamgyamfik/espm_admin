@@ -14,6 +14,7 @@ import { BsCalendarEvent } from "react-icons/bs";
 import UserProfile from "./UserProfile";
 import AdminNotification from "./AdminNotification";
 import AdminMessage from "./AdminMessage";
+import RegisteredUsers from "./RegisteredUsers";
 
 const SideBar = () => {
   const [sideBarToggle, setSideBarToggle] = useState(true);
@@ -60,11 +61,8 @@ const SideBar = () => {
 
   return (
     <>
-      <div className="w-full static_content border-2 border-b-green-500 flex  justify-between sm:justify-end items-center p-1">
-        <div
-          className="sm:hidden h-1 static_content"
-          onClick={toggleMenuHandler}
-        >
+      <div className="w-full flex justify-between items-center sm:justify-end p-1 static_content border-2 border-b-green-500">
+        <div className="sm:hidden  static_content" onClick={toggleMenuHandler}>
           {!toggleMenu ? (
             <BiMenu> </BiMenu>
           ) : (
@@ -73,17 +71,15 @@ const SideBar = () => {
             </AiOutlineClose>
           )}
         </div>
-
-        {/* Nav bar */}
-        <div className="flex ">
-          <div className="flex items-center">
-            <div className="p-5 m-1">
-              <AiOutlineMessage onClick={openMessageHandler} />
-            </div>
-            <div className="p-5 m-1" onClick={openNotificationHandler}>
-              <IoNotificationsOutline />
-            </div>
+        <div className="flex justify-end ">
+          {/* <div className="flex items-center"> */}
+          <div className="p-5 m-1">
+            <AiOutlineMessage onClick={openMessageHandler} />
           </div>
+          <div className="p-5 m-1" onClick={openNotificationHandler}>
+            <IoNotificationsOutline />
+          </div>
+          {/* </div> */}
           <div
             className="cursor-pointer flex items-center p-3 gap-1 m-1"
             onClick={openUserProfile}
@@ -96,27 +92,28 @@ const SideBar = () => {
             <p>Hi, Admin </p>
             <RiArrowDropDownLine> </RiArrowDropDownLine>
           </div>
-        </div>
-        {/* icon popups */}
-        <div className="relative">
-          {active === "TAB1" && showMessage && (
-            <AdminMessage setCloseMessage={closeMessageHandler} />
-          )}
-        </div>
+          <div className="relative ">
+            {active === "TAB1" && showMessage && (
+              <AdminMessage setCloseMessage={closeMessageHandler} />
+            )}
+          </div>
 
-        <div className="relative">
-          {active === "TAB2" && showNotification && (
-            <AdminNotification
-              setCloseNotification={closeNotificationhandler}
-            />
-          )}
-        </div>
-        <div className="relative ">
-          {active === "TAB3" && showUserProfile && (
-            <UserProfile setCloseUserProfile={closeUserProfileHandler} />
-          )}
+          <div className="relative">
+            {active === "TAB2" && showNotification && (
+              <AdminNotification
+                setCloseNotification={closeNotificationhandler}
+              />
+            )}
+          </div>
+
+          <div className="relative ">
+            {active === "TAB3" && showUserProfile && (
+              <UserProfile setCloseUserProfile={closeUserProfileHandler} />
+            )}
+          </div>
         </div>
       </div>
+
       <div className="flex relative">
         <div
           className={`hide_sidebar h-screen shadow-xl ${
@@ -140,7 +137,6 @@ const SideBar = () => {
             </h1>
           </div>
         </div>
-        {/* </div> */}
 
         <div className={`  ${!toggleMenu ? "hidden " : "bg-red"} sm:hidden`}>
           <div
@@ -177,10 +173,10 @@ const SideBar = () => {
           </div>
         </div>
 
-        <div className=" h-screen w-full absolute ">
-          <div className="">
-            <h1>ESPM Admin Dashboard goes here</h1>
-          </div>
+        <div className=" h-screen w-full  ">
+          <h1>Dashboard </h1>
+
+          <RegisteredUsers />
         </div>
       </div>
     </>
