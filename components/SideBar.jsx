@@ -17,7 +17,6 @@ import UserProfile from "./UserProfile";
 import AdminNotification from "./AdminNotification";
 import AdminMessage from "./AdminMessage";
 import RegisteredUsers from "./RegisteredUsers";
-import SortTab from "./SortTab";
 
 const SideBar = () => {
   const [sideBarToggle, setSideBarToggle] = useState(true);
@@ -210,7 +209,6 @@ const SideBar = () => {
           <h1>Dashboard </h1>
 
           <RegisteredUsers />
-          <SortTab />
         </div>
       </div>
     </>

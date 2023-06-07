@@ -1,15 +1,27 @@
 import React from "react";
+import { useState } from "react";
 
 import { AiOutlineSearch } from "react-icons/ai";
 
 import { AiOutlineFilter } from "react-icons/ai";
 import { MdSort } from "react-icons/md";
+import SortTab from "./SortTab";
 
 const RegisteredUsers = () => {
+  const [showSortTab, setShowSortTab] = useState(false);
+
+  const closeSortTabHandler = (value) => {
+    setShowSortTab(value);
+  };
+
+  const showSortTabHandler = () => {
+    setShowSortTab(true);
+  };
+
   return (
     <>
       <div className="w-full ">
-        <div className="flex  sm:justify-betwwen justify-around items-center">
+        <div className="flex  sm:justify-between justify-around items-center">
           {/* <div> */}
           <form>
             {/* <label htmlFor="">Search</label> */}
@@ -36,13 +48,14 @@ const RegisteredUsers = () => {
             <p>Filter</p>
           </div>
           <div className="flex justify-center items-center">
-            <div className="m-1">
+            <div className="m-1" onClick={showSortTabHandler}>
               <MdSort />
             </div>
             <p>Sort</p>
           </div>
         </div>
       </div>
+      {showSortTab && <SortTab closeSortTab={closeSortTabHandler} />}
     </>
   );
 };
