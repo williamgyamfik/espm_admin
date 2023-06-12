@@ -31,7 +31,7 @@ const UserProfile = (props) => {
       <div className="flex justify-between mb-5 ">
         <h2 className="font-semibold">User profile</h2>
         <div onClick={closeUserProfile}>
-          <AiOutlineClose className="bg-red-500 rounded-lg" />
+          <AiOutlineClose className="bg-red-500 rounded-lg cursor-pointer" />
         </div>
       </div>
       <div className="flex items-center hover:bg-slate-200 gap-5 border-b-2 cursor-pointer mb-5">

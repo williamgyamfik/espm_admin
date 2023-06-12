@@ -11,7 +11,7 @@ const SortTab = (props) => {
   };
 
   return (
-    <div className="w-64   absolute z-50 bg-white right-10 top-20 cursor-pointer p-8 border shadow-lg rounded-lg">
+    <div className="w-64   absolute z-10 bg-white right-10 top-20 cursor-pointer p-8 border shadow-lg rounded-lg">
       <div
         className="flex justify-end items-center"
         onClick={closeSortTabhandler}
