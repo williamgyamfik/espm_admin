@@ -16,7 +16,6 @@ import { FiSettings } from "react-icons/fc";
 import UserProfile from "./UserProfile";
 import AdminNotification from "./AdminNotification";
 import AdminMessage from "./AdminMessage";
-import RegisteredUsers from "./RegisteredUsers";
 
 const SideBar = () => {
   const [sideBarToggle, setSideBarToggle] = useState(true);
@@ -203,12 +202,6 @@ const SideBar = () => {
               </h1>
             </div>
           </div>
-        </div>
-
-        <div className=" h-screen w-full  ">
-          <h1>Dashboard </h1>
-
-          <RegisteredUsers />
         </div>
       </div>
     </>
