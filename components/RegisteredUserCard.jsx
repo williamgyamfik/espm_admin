@@ -1,40 +1,39 @@
 import React, { useState, useEffect } from "react";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
 
-const supabaseUrl = "https://buhqjvmyysivisponsbc.supabase.co";
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY;
-
-// const supabase = createClient(supabaseUrl, supabaseKey);
+import { supabase } from "../supabaseClientLibrary/supabaseClient";
 
 const RegisteredUserCard = () => {
-  const supabase = useSupabaseClient();
   const [userData, setUserData] = useState([]);
 
   useEffect(() => {
     const getUser = async () => {
       try {
-        let { data: userProfile, error } = await supabase
-          .from("userProfile")
-          .select("*");
-        console.log(data);
-        setUserData(userProfile);
+        let { data, error } = await supabase.from("userProfile").select("*");
+
+        if (error) {
+          throw error("Data not available on server");
+        }
+
+        setUserData(data);
       } catch (error) {
-        // Handle the error
+        console.log(error.message);
       }
     };
     getUser();
-  }, [setUserData, supabase]);
+  }, [setUserData]);
 
-  console.log(userData);
-
+  const zip = userData?.map((user) => user.zip);
+  console.log(zip);
   return (
     <>
       {userData?.map((user) => {
         <tr key={user.id}>
-          <td>{user.id}</td>
-          <td>{user.firstName}</td>
-          <td>{user.lastName}</td>
+          <td>{user.first_name}name</td>
+          <td>{user.last_name}</td>
+          <td>{user.video_link}</td>
           <td>{user.email}</td>
+          <td>{user.country}</td>
+          <td>{user.city}</td>
         </tr>;
       })}
     </>
