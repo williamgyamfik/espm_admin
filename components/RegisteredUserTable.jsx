@@ -1,5 +1,4 @@
 import React from "react";
-import RegisteredUserCard from "./RegisteredUserCard";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import Link from "next/link";
@@ -7,8 +6,14 @@ import Link from "next/link";
 import { supabase } from "../supabaseClientLibrary/supabaseClient";
 import { RiDeleteBin5Line } from "react-icons/ri";
 
+import { SlControlEnd } from "react-icons/sl";
+import { SlControlStart } from "react-icons/sl";
+import { TfiControlSkipForward } from "react-icons/tfi";
+import { TfiControlSkipBackward } from "react-icons/tfi";
+
 const RegisteredUserTable = () => {
   const [userData, setUserData] = useState([]);
+  const paginationData = [];
 
   useEffect(() => {
     const getUser = async () => {
@@ -100,8 +105,37 @@ const RegisteredUserTable = () => {
             </tbody>
           </table>
         </div>
-        <div className="flex items-center justify-center bg-gray-200">
-          <p>1 of 5 pages</p>
+        <div className="flex justify-between  bg-gray-200">
+          <div className="flex items-center justify-between p-2 gap-2">
+            <div>
+              <SlControlStart />
+            </div>
+            <div>
+              <TfiControlSkipBackward />
+            </div>
+            <div className="rounded-full w-6 flex items-center justify-center text-black ">
+              <a href="">1</a>
+            </div>
+
+            <div className="rounded-full w-6 flex items-center justify-center text-black ">
+              <a href="">2</a>
+            </div>
+
+            <div className="rounded-full w-6 flex items-center justify-center text-black ">
+              <a href="">3</a>
+            </div>
+            <div>
+              <TfiControlSkipForward />
+            </div>
+            <div>
+              <SlControlEnd />
+            </div>
+          </div>
+          <div className=" p-2">
+            {/* <div className="flex justify-center"> */}
+            <p>1 of 5 pages</p>
+            {/* </div> */}
+          </div>
         </div>
       </div>
     </>
