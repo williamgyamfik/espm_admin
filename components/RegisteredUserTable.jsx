@@ -10,10 +10,11 @@ import { SlControlEnd } from "react-icons/sl";
 import { SlControlStart } from "react-icons/sl";
 import { TfiControlSkipForward } from "react-icons/tfi";
 import { TfiControlSkipBackward } from "react-icons/tfi";
+import { current } from "tailwindcss/colors";
 
 const RegisteredUserTable = () => {
   const [userData, setUserData] = useState([]);
-  const paginationData = [];
+  const [currentUsersList, setCurrentUsersList] = useState(0);
 
   useEffect(() => {
     const getUser = async () => {
@@ -31,6 +32,29 @@ const RegisteredUserTable = () => {
     };
     getUser();
   }, [setUserData]);
+
+  const usersPerpage = 3;
+
+  const startIndex = currentUsersList * usersPerpage;
+  const endIndex = usersPerpage + startIndex;
+  const currentUsers = userData.slice(startIndex, endIndex);
+
+  const totalUsersList = Math.ceil(userData.length / usersPerpage);
+
+  const lastUsersList = userData.slice(
+    userData.length - usersPerpage,
+    userData.length - 1
+  );
+  console.log(lastUsersList);
+
+  const nextUsers = () => {
+    setCurrentUsersList((prevValue) => prevValue + 1);
+  };
+
+  const prevUsers = () => {
+    setCurrentUsersList((prevValue) => prevValue - 1);
+  };
+
   return (
     <>
       <div className="my-3 p-3">
@@ -72,7 +96,7 @@ const RegisteredUserTable = () => {
             </thead>
 
             <tbody className="border ">
-              {userData?.map((user) => {
+              {currentUsers?.map((user) => {
                 return (
                   <tr key={user.id} className="border-b-2 my-10">
                     <td>
@@ -110,9 +134,11 @@ const RegisteredUserTable = () => {
             <div>
               <SlControlStart />
             </div>
-            <div>
-              <TfiControlSkipBackward />
-            </div>
+            {currentUsersList > 0 && (
+              <div onClick={prevUsers}>
+                <TfiControlSkipBackward className="" />
+              </div>
+            )}
             <div className="rounded-full w-6 flex items-center justify-center text-black ">
               <a href="">1</a>
             </div>
@@ -124,9 +150,11 @@ const RegisteredUserTable = () => {
             <div className="rounded-full w-6 flex items-center justify-center text-black ">
               <a href="">3</a>
             </div>
-            <div>
-              <TfiControlSkipForward />
-            </div>
+            {totalUsersList > currentUsersList && (
+              <div onClick={nextUsers}>
+                <TfiControlSkipForward />
+              </div>
+            )}
             <div>
               <SlControlEnd />
             </div>
@@ -137,6 +165,11 @@ const RegisteredUserTable = () => {
             {/* </div> */}
           </div>
         </div>
+        {totalUsersList > currentUsersList ? (
+          ""
+        ) : (
+          <p className="text-red-500">No users to be displayed</p>
+        )}
       </div>
     </>
   );
