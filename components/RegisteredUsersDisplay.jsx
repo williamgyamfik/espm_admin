@@ -7,9 +7,9 @@ import { AiOutlineFilter } from "react-icons/ai";
 import { MdSort } from "react-icons/md";
 import SortTab from "./SortTab";
 import FilterTab from "./FilterTab";
-import RegisteredUserList from "./RegisteredUserTable";
+import RegisteredUserTable from "./RegisteredUserTable";
 
-const RegisteredUsersDisplay = () => {
+const RegisteredUsersDisplay = ({ data }) => {
   const [showSortTab, setShowSortTab] = useState(false);
   const [showFilterTab, setFilterTab] = useState(false);
   const [active, setActive] = useState("");
@@ -88,7 +88,7 @@ const RegisteredUsersDisplay = () => {
           </div>
         </div>
         <div>
-          <RegisteredUserList />
+          <RegisteredUserTable data={data} />
         </div>
       </div>
     </>

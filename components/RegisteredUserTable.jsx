@@ -1,9 +1,8 @@
 import React from "react";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 
-import { supabase } from "../supabaseClientLibrary/supabaseClient";
 import { RiDeleteBin5Line } from "react-icons/ri";
 
 import { SlControlEnd } from "react-icons/sl";
@@ -12,10 +11,8 @@ import { TfiControlSkipForward } from "react-icons/tfi";
 import { TfiControlSkipBackward } from "react-icons/tfi";
 import { current } from "tailwindcss/colors";
 
-const RegisteredUserTable = () => {
-  const [userData, setUserData] = useState([]);
+const RegisteredUserTable = ({ data }) => {
   const [currentUsersList, setCurrentUsersList] = useState(0);
-
   const [checked, setChecked] = useState(false);
   const [selectedUsers, setSelectedUser] = useState([]);
 
@@ -23,34 +20,17 @@ const RegisteredUserTable = () => {
     setChecked(!checked);
   };
 
-  useEffect(() => {
-    const getUser = async () => {
-      try {
-        let { data, error } = await supabase.from("userProfile").select("*");
-
-        if (error) {
-          throw error("Data not available on server");
-        }
-
-        setUserData(data);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    getUser();
-  }, [setUserData]);
-
-  const usersPerpage = 3;
+  const usersPerpage = 4;
 
   const startIndex = currentUsersList * usersPerpage;
   const endIndex = usersPerpage + startIndex;
-  const currentUsers = userData.slice(startIndex, endIndex);
+  const currentUsers = data.data.slice(startIndex, endIndex);
 
-  const totalUsersList = Math.ceil(userData.length / usersPerpage);
+  const totalUsersList = Math.ceil(data.data.length / usersPerpage);
 
-  const lastUsersList = userData.slice(
-    userData.length - usersPerpage,
-    userData.length - 1
+  const lastUsersList = data.data.slice(
+    data.data.length - usersPerpage,
+    data.data.length - 1
   );
   // console.log(lastUsersList);
 
@@ -111,8 +91,24 @@ const RegisteredUserTable = () => {
                         <input type="checkbox"></input>
                       </div>
                     </td>
-                    <td>{user.first_name ? user.first_name : "N/A"}</td>
-                    <td>{user.last_name ? user.last_name : "N/A"}</td>
+                    <td>
+                      {user.first_name
+                        ? user.first_name
+                            .split(" ")
+                            .map(
+                              (name) =>
+                                name.charAt(0).toUpperCase() +
+                                name.substring(1).toLowerCase()
+                            )
+                            .join(" ")
+                        : "N/A"}
+                    </td>
+                    <td>
+                      {user.last_name
+                        ? user.last_name.charAt(0).toUpperCase() +
+                          user.last_name.substring(1).toLowerCase()
+                        : "N/A"}
+                    </td>
                     <td
                       className={
                         user.video_link ? "text-green-500" : "text-red-600"
@@ -128,7 +124,12 @@ const RegisteredUserTable = () => {
                       </Link>
                     </td>
                     <td>{user.email ? user.email : "N/A"}</td>
-                    <td>{user.country ? user.country : "N/A"}</td>
+                    <td>
+                      {user.country
+                        ? user.country.charAt(0).toUpperCase() +
+                          user.country.substring(1).toLowerCase()
+                        : "N/A"}
+                    </td>
                     <td>{user.city ? user.city : "N/A"}</td>
                   </tr>
                 );

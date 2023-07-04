@@ -1,24 +1,23 @@
-import DashboardPage from "@/components/DashboardPage";
-import React, { useState } from "react";
-// import { supabase } from "../supabaseClientLibrary/supabaseClient";
+import React from "react";
 
-// import SideBar from "./SideBar";
-// import RegisteredUsersDisplay from "./RegisteredUsersDisplay";
 import SideBar from "@/components/SideBar";
 import RegisteredUsersDisplay from "@/components/RegisteredUsersDisplay";
 
-const Index = () => {
+const Index = ({ data }) => {
   return (
     <>
-      {/* <DashboardPage /> */}
-      <h1>DASHBOARD Page </h1>
-
       <SideBar />
-      <RegisteredUsersDisplay />
+      <RegisteredUsersDisplay data={data} />
     </>
   );
 };
 
 export default Index;
 
-// export async function getStaticProps() {}
+export async function getStaticProps() {
+  const data = await supabase.from("userProfile").select("*");
+  return {
+    props: { data },
+    revalidate: 60,
+  };
+}
