@@ -16,6 +16,13 @@ const RegisteredUserTable = () => {
   const [userData, setUserData] = useState([]);
   const [currentUsersList, setCurrentUsersList] = useState(0);
 
+  const [checked, setChecked] = useState(false);
+  const [selectedUsers, setSelectedUser] = useState([]);
+
+  const checkHandler = () => {
+    setChecked(!checked);
+  };
+
   useEffect(() => {
     const getUser = async () => {
       try {
@@ -45,7 +52,7 @@ const RegisteredUserTable = () => {
     userData.length - usersPerpage,
     userData.length - 1
   );
-  console.log(lastUsersList);
+  // console.log(lastUsersList);
 
   const nextUsers = () => {
     setCurrentUsersList((prevValue) => prevValue + 1);
@@ -69,7 +76,7 @@ const RegisteredUserTable = () => {
           <table className="w-full text-xs text-center overscroll-y-auto ">
             <thead>
               <tr className="w-full border-b-2 bg-gray-200">
-                <th scope="col">
+                <th scope="col" onChange={checkHandler} checked={checked}>
                   <div className="w-14 py-3">
                     <input type="checkbox" name="" id="" />
                   </div>

@@ -7,7 +7,7 @@ import Link from "next/link";
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [userAuth, setuserAuth] = useState(false);
   const supabase = useSupabaseClient();
 
   const submitHandler = (e) => {
@@ -19,10 +19,14 @@ const LoginForm = () => {
 
   const signInhandler = async () => {
     try {
-      await supabase.auth.signInWithPassword({
+      const data = await supabase.auth.signInWithPassword({
         email,
         password,
       });
+
+      if (data) {
+        setuserAuth(!userAuth);
+      }
     } catch (error) {
       alert(error.message);
     }
@@ -123,6 +127,13 @@ const LoginForm = () => {
           </div>
         </div>
       </div>
+      {!userAuth ? (
+        ""
+      ) : (
+        <div className="text-red-500 text-center right-3 p-5">
+          <p>Sorry user not Authenticated </p>
+        </div>
+      )}
     </section>
   );
 };
