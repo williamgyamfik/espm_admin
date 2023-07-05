@@ -2,6 +2,7 @@ import React from "react";
 
 import SideBar from "@/components/SideBar";
 import RegisteredUsersDisplay from "@/components/RegisteredUsersDisplay";
+import { supabase } from "@/supabaseClientLibrary/supabaseClient";
 
 const Index = ({ data }) => {
   return (

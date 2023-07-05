@@ -1,20 +1,36 @@
-import LoginForm from "@/components/LoginForm";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "@supabase/auth-helpers-react";
+import { Suspense } from "react";
+
+import Spinner from "@/components/Spinner";
+import LoginForm from "@/components/LoginForm";
 
 export default function Home() {
-  const [user, setUser] = useState(false);
   const router = useRouter();
   const session = useSession();
+  const [userLogged, setUserLogged] = useState(false);
 
   useEffect(() => {
     if (session) {
+      setUserLogged(true);
       router.push("/dashboard");
     } else {
-      setUser(true);
       return;
     }
   }, [session, router]);
-  return <>{<LoginForm />}</>;
+  return (
+    <>
+      <Suspense fallback={<Spinner />}>
+        {userLogged ? (
+          <div className="bg-slate-500 h-screen  flex flex-col  text-center justify-center">
+            <Spinner />
+            <p>Loading.....please wait</p>
+          </div>
+        ) : (
+          <LoginForm />
+        )}
+      </Suspense>
+    </>
+  );
 }
