@@ -71,7 +71,7 @@ const RegisteredUserTable = ({ data }) => {
                   <div className="w-24 py-3"> Link</div>
                 </th>
                 <th scope="col">
-                  <div className="w-24 py-3"> Email</div>
+                  <div className="w-48 py-3"> Email</div>
                 </th>
                 <th scope="col">
                   <div className="w-24 py-3"> Country</div>

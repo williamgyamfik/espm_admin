@@ -16,6 +16,7 @@ import { FiSettings } from "react-icons/fc";
 import UserProfile from "./UserProfile";
 import AdminNotification from "./AdminNotification";
 import AdminMessage from "./AdminMessage";
+import RegisterUser from "./RegisterUser";
 
 const SideBar = () => {
   const [sideBarToggle, setSideBarToggle] = useState(true);
@@ -24,6 +25,11 @@ const SideBar = () => {
   const [showNotification, setshowNotification] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
   const [active, setActive] = useState("");
+  const [showRegisterUser, setShowRegisterUser] = useState(false);
+
+  const registeruserhandler = () => {
+    setShowRegisterUser(true);
+  };
 
   const sideBarToggleHandler = () => {
     setSideBarToggle(!sideBarToggle);
@@ -58,6 +64,10 @@ const SideBar = () => {
 
   const closeMessageHandler = (value) => {
     setShowMessage(value);
+  };
+
+  const closeRegisterUserForm = (value) => {
+    setShowRegisterUser(value);
   };
 
   return (
@@ -161,7 +171,7 @@ const SideBar = () => {
                 sideBarToggle && "rotate-180"
               } bg-white duration-3s text-3xl border cursor-pointer absolute -right-3 rounded-full`}
             />
-            <div className=" ">
+            <div className=" " onClick={registeruserhandler}>
               <FaUserPlus className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />
               <h1
                 className={`text-sky-500 origin-left font-medium ${
@@ -203,6 +213,9 @@ const SideBar = () => {
             </div>
           </div>
         </div>
+        {showRegisterUser && (
+          <RegisterUser closeRegisterUser={closeRegisterUserForm} />
+        )}
       </div>
     </>
   );

@@ -19,11 +19,14 @@ export default function Home() {
       return;
     }
   }, [session, router]);
+
+  console.log(session);
+
   return (
     <>
       <Suspense fallback={<Spinner />}>
         {userLogged ? (
-          <div className="bg-slate-500 h-screen  flex flex-col  text-center justify-center">
+          <div className="bg-white h-screen  flex flex-col  text-center justify-center">
             <Spinner />
             <p>Loading.....please wait</p>
           </div>
