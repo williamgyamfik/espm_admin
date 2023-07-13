@@ -13,26 +13,32 @@ import { current } from "tailwindcss/colors";
 
 const RegisteredUserTable = ({ data }) => {
   const [currentUsersList, setCurrentUsersList] = useState(0);
-  const [checked, setChecked] = useState(false);
-  const [selectedUsers, setSelectedUser] = useState([]);
 
-  const checkHandler = () => {
-    setChecked(!checked);
-  };
+  const pageNumbers = [];
 
-  const usersPerpage = 4;
+  const usersPerPage = 20;
 
-  const startIndex = currentUsersList * usersPerpage;
-  const endIndex = usersPerpage + startIndex;
+  const startIndex = currentUsersList * usersPerPage;
+  const endIndex = usersPerPage + startIndex;
   const currentUsers = data.data.slice(startIndex, endIndex);
 
-  const totalUsersList = Math.ceil(data.data.length / usersPerpage);
+  console.log(currentUsers);
 
+  const totalUsersList = Math.ceil(data.data.length / usersPerPage);
+  console.log(totalUsersList);
+
+  for (let i = 0; i < totalUsersList; i++) {
+    console.log(i);
+    pageNumbers.push(i);
+  }
+
+  console.log(pageNumbers);
   const lastUsersList = data.data.slice(
-    data.data.length - usersPerpage,
-    data.data.length - 1
+    // data.data.length - usersPerPage,
+    // data.data.length - 1
+    -3
   );
-  // console.log(lastUsersList);
+  console.log(currentUsersList);
 
   const nextUsers = () => {
     setCurrentUsersList((prevValue) => prevValue + 1);
@@ -41,6 +47,10 @@ const RegisteredUserTable = ({ data }) => {
   const prevUsers = () => {
     setCurrentUsersList((prevValue) => prevValue - 1);
   };
+
+  // const lastUsersHandler = () => {
+  //   setLastusers((lastUsersList) => lastUsersList - 1);
+  // };
 
   return (
     <>
@@ -53,10 +63,10 @@ const RegisteredUserTable = ({ data }) => {
         </div>
 
         <div className="overflow-x-auto  ">
-          <table className="w-full text-xs text-center overscroll-y-auto ">
+          <table className="w-full text-xs text-center overscroll-y-auto overscoll-x-auto">
             <thead>
               <tr className="w-full border-b-2 bg-gray-200">
-                <th scope="col" onChange={checkHandler} checked={checked}>
+                <th scope="col">
                   <div className="w-14 py-3">
                     <input type="checkbox" name="" id="" />
                   </div>
@@ -147,31 +157,33 @@ const RegisteredUserTable = ({ data }) => {
                 <TfiControlSkipBackward className="" />
               </div>
             )}
-            <div className="rounded-full w-6 flex items-center justify-center text-black ">
-              <a href="">1</a>
-            </div>
-
-            <div className="rounded-full w-6 flex items-center justify-center text-black ">
-              <a href="">2</a>
-            </div>
-
-            <div className="rounded-full w-6 flex items-center justify-center text-black ">
-              <a href="">3</a>
-            </div>
+            {pageNumbers?.map((number) => {
+              return (
+                <div
+                  key={number}
+                  className="rounded-full w-6 m-2 flex items-center justify-center text-black bg-white"
+                  onClick={() => setCurrentUsersList(number)}
+                >
+                  <p>{number + 1}</p>
+                </div>
+              );
+            })}
             {totalUsersList > currentUsersList && (
               <div onClick={nextUsers}>
                 <TfiControlSkipForward />
               </div>
             )}
-            <div>
-              <SlControlEnd />
-            </div>
+            {
+              <div>
+                <SlControlEnd />
+              </div>
+            }
           </div>
-          <div className=" p-2">
-            {/* <div className="flex justify-center"> */}
-            <p>1 of 5 pages</p>
-            {/* </div> */}
-          </div>
+          {/* <div className=" p-2"> */}
+          {/* <div className="flex justify-center"> */}
+          {/* <p>1 of 5 pages</p> */}
+          {/* </div> */}
+          {/* </div> */}
         </div>
         {totalUsersList > currentUsersList ? (
           ""

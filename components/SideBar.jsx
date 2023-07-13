@@ -178,7 +178,7 @@ const SideBar = () => {
                   sideBarToggle && "scale-0"
                 }`}
               >
-                Register user
+                Admin roles Add user Delete user Update user See all users
               </h1>
             </div>
             <div className=" ">
