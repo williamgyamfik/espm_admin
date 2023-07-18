@@ -74,14 +74,20 @@ const RegisteredUsersDisplay = ({ data }) => {
           </form>
           {/* </div> */}
 
-          <div className="flex justify-center items-center">
-            <div className="m-1" onClick={showFilterTabHandler}>
+          <div
+            className="flex justify-center items-center"
+            onClick={showFilterTabHandler}
+          >
+            <div className="m-1">
               <AiOutlineFilter />
             </div>
             <p>Filter</p>
           </div>
-          <div className="flex justify-center items-center">
-            <div className="m-1" onClick={showSortTabHandler}>
+          <div
+            className="flex justify-center items-center "
+            onClick={showSortTabHandler}
+          >
+            <div className="m-1">
               <MdSort />
             </div>
             <p>Sort</p>

@@ -15,30 +15,25 @@ const RegisteredUserTable = ({ data }) => {
   const [currentUsersList, setCurrentUsersList] = useState(0);
 
   const pageNumbers = [];
-
-  const usersPerPage = 20;
+  const usersPerPage = 5;
 
   const startIndex = currentUsersList * usersPerPage;
   const endIndex = usersPerPage + startIndex;
   const currentUsers = data.data.slice(startIndex, endIndex);
 
-  console.log(currentUsers);
-
   const totalUsersList = Math.ceil(data.data.length / usersPerPage);
-  console.log(totalUsersList);
 
   for (let i = 0; i < totalUsersList; i++) {
-    console.log(i);
     pageNumbers.push(i);
   }
 
-  console.log(pageNumbers);
+  console.log(pageNumbers, totalUsersList);
+
   const lastUsersList = data.data.slice(
     // data.data.length - usersPerPage,
     // data.data.length - 1
     -3
   );
-  console.log(currentUsersList);
 
   const nextUsers = () => {
     setCurrentUsersList((prevValue) => prevValue + 1);
@@ -61,8 +56,9 @@ const RegisteredUserTable = ({ data }) => {
         <div className="flex items-center cursor-pointer text-red-600 ">
           <RiDeleteBin5Line /> <button>Delete</button>
         </div>
-
-        <div className="overflow-x-auto  ">
+      </div>
+      <div className="  w-full max-w-full ">
+        <div className="w-full overflow-x-auto">
           <table className="w-full text-xs text-center overscroll-y-auto overscoll-x-auto">
             <thead>
               <tr className="w-full border-b-2 bg-gray-200">
@@ -147,34 +143,36 @@ const RegisteredUserTable = ({ data }) => {
             </tbody>
           </table>
         </div>
-        <div className="flex justify-between  bg-gray-200">
-          <div className="flex items-center justify-between p-2 gap-2">
-            <div>
+        <div className="flex justify-between  bg-gray-200 w-full max-w-full">
+          <div className="flex items-center justify-between p-2 gap-2 w-full">
+            <div className="m-4">
               <SlControlStart />
             </div>
             {currentUsersList > 0 && (
-              <div onClick={prevUsers}>
-                <TfiControlSkipBackward className="" />
+              <div className="m-4" onClick={prevUsers}>
+                <TfiControlSkipBackward c />
               </div>
             )}
-            {pageNumbers?.map((number) => {
-              return (
-                <div
-                  key={number}
-                  className="rounded-full w-6 m-2 flex items-center justify-center text-black bg-white"
-                  onClick={() => setCurrentUsersList(number)}
-                >
-                  <p>{number + 1}</p>
-                </div>
-              );
-            })}
+            <div className="flex items-center   justify-center overflow-x-auto m-4 w-full max-w-full">
+              {pageNumbers?.map((number) => {
+                return (
+                  <div
+                    key={number}
+                    className=" rounded-full m-3 overflow-visible  text-black bg-white "
+                    onClick={() => setCurrentUsersList(number)}
+                  >
+                    <p>{number + 1}</p>{" "}
+                  </div>
+                );
+              })}
+            </div>
             {totalUsersList > currentUsersList && (
-              <div onClick={nextUsers}>
+              <div className="m-4" onClick={nextUsers}>
                 <TfiControlSkipForward />
               </div>
             )}
             {
-              <div>
+              <div className="m-4">
                 <SlControlEnd />
               </div>
             }
@@ -185,12 +183,13 @@ const RegisteredUserTable = ({ data }) => {
           {/* </div> */}
           {/* </div> */}
         </div>
-        {totalUsersList > currentUsersList ? (
-          ""
-        ) : (
-          <p className="text-red-500">No users to be displayed</p>
-        )}
       </div>
+
+      {totalUsersList > currentUsersList ? (
+        ""
+      ) : (
+        <p className="text-red-500">No users to be displayed</p>
+      )}
     </>
   );
 };
