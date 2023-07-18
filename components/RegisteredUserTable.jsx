@@ -9,13 +9,13 @@ import { SlControlEnd } from "react-icons/sl";
 import { SlControlStart } from "react-icons/sl";
 import { TfiControlSkipForward } from "react-icons/tfi";
 import { TfiControlSkipBackward } from "react-icons/tfi";
-import { current } from "tailwindcss/colors";
 
-const RegisteredUserTable = ({ data }) => {
+
+const RegisteredUserTable = ({ data,searchValue }) => {
   const [currentUsersList, setCurrentUsersList] = useState(0);
 
   const pageNumbers = [];
-  const usersPerPage = 5;
+  const usersPerPage = 30;
 
   const startIndex = currentUsersList * usersPerPage;
   const endIndex = usersPerPage + startIndex;
@@ -27,7 +27,7 @@ const RegisteredUserTable = ({ data }) => {
     pageNumbers.push(i);
   }
 
-  console.log(pageNumbers, totalUsersList);
+  console.log(pageNumbers, totalUsersList,searchValue);
 
   const lastUsersList = data.data.slice(
     // data.data.length - usersPerPage,
@@ -89,7 +89,20 @@ const RegisteredUserTable = ({ data }) => {
             </thead>
 
             <tbody className="border ">
-              {currentUsers?.map((user) => {
+              { currentUsers.filter((value)=>{
+                if(searchValue === ""){
+                  return value
+                }else if(value.first_name && value.first_name.toLowerCase().includes(searchValue)){
+                  return value
+                }else if(value.last_name && value.last_name.toLowerCase().includes(searchValue)){
+                  return value
+                }else if(value.country && value.country.toLowerCase().includes(searchValue)){
+                    return value
+                }
+                else return
+         
+             
+              }).map((user) => {
                 return (
                   <tr key={user.id} className="border-b-2 my-10">
                     <td>

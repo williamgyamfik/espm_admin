@@ -22,8 +22,7 @@ const RegisteredUserCard = () => {
     getUser();
   }, [setUserData]);
 
-  const zip = userData?.map((user) => user.zip);
-  console.log(zip);
+
   return (
     <>
       {userData?.map((user) => {
