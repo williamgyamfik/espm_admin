@@ -9,14 +9,10 @@ import { SlControlEnd } from "react-icons/sl";
 import { SlControlStart } from "react-icons/sl";
 import { TfiControlSkipForward } from "react-icons/tfi";
 import { TfiControlSkipBackward } from "react-icons/tfi";
-<<<<<<< HEAD
 import { current } from "tailwindcss/colors";
 import { FaUserPlus } from "react-icons/fa";
-=======
->>>>>>> 93b8779156484a76aafb338c73705df14e1d4a27
 
-
-const RegisteredUserTable = ({ data,searchValue }) => {
+const RegisteredUserTable = ({ data, searchValue }) => {
   const [currentUsersList, setCurrentUsersList] = useState(0);
 
   const pageNumbers = [];
@@ -32,7 +28,7 @@ const RegisteredUserTable = ({ data,searchValue }) => {
     pageNumbers.push(i);
   }
 
-  console.log(pageNumbers, totalUsersList,searchValue);
+  console.log(pageNumbers, totalUsersList, searchValue);
 
   const lastUsersList = data.data.slice(
     // data.data.length - usersPerPage,
@@ -105,70 +101,78 @@ const RegisteredUserTable = ({ data,searchValue }) => {
             </thead>
 
             <tbody className="border ">
-              { currentUsers.filter((value)=>{
-                if(searchValue === ""){
-                  return value
-                }else if(value.first_name && value.first_name.toLowerCase().includes(searchValue)){
-                  return value
-                }else if(value.last_name && value.last_name.toLowerCase().includes(searchValue)){
-                  return value
-                }else if(value.country && value.country.toLowerCase().includes(searchValue)){
-                    return value
-                }
-                else return
-         
-             
-              }).map((user) => {
-                return (
-                  <tr key={user.id} className="border-b-2 my-10">
-                    <td>
-                      <div className="flex items-center justify-center w-14 py-3">
-                        <input type="checkbox"></input>
-                      </div>
-                    </td>
-                    <td>
-                      {user.first_name
-                        ? user.first_name
-                            .split(" ")
-                            .map(
-                              (name) =>
-                                name.charAt(0).toUpperCase() +
-                                name.substring(1).toLowerCase()
-                            )
-                            .join(" ")
-                        : "N/A"}
-                    </td>
-                    <td>
-                      {user.last_name
-                        ? user.last_name.charAt(0).toUpperCase() +
-                          user.last_name.substring(1).toLowerCase()
-                        : "N/A"}
-                    </td>
-                    <td
-                      className={
-                        user.video_link ? "text-green-500" : "text-red-600"
-                      }
-                    >
-                      <Link
-                        href={user.video_link ? user.video_link : ""}
-                        target="_blank"
+              {currentUsers
+                .filter((value) => {
+                  if (searchValue === "") {
+                    return value;
+                  } else if (
+                    value.first_name &&
+                    value.first_name.toLowerCase().includes(searchValue)
+                  ) {
+                    return value;
+                  } else if (
+                    value.last_name &&
+                    value.last_name.toLowerCase().includes(searchValue)
+                  ) {
+                    return value;
+                  } else if (
+                    value.country &&
+                    value.country.toLowerCase().includes(searchValue)
+                  ) {
+                    return value;
+                  } else return;
+                })
+                .map((user) => {
+                  return (
+                    <tr key={user.id} className="border-b-2 my-10">
+                      <td>
+                        <div className="flex items-center justify-center w-14 py-3">
+                          <input type="checkbox"></input>
+                        </div>
+                      </td>
+                      <td>
+                        {user.first_name
+                          ? user.first_name
+                              .split(" ")
+                              .map(
+                                (name) =>
+                                  name.charAt(0).toUpperCase() +
+                                  name.substring(1).toLowerCase()
+                              )
+                              .join(" ")
+                          : "N/A"}
+                      </td>
+                      <td>
+                        {user.last_name
+                          ? user.last_name.charAt(0).toUpperCase() +
+                            user.last_name.substring(1).toLowerCase()
+                          : "N/A"}
+                      </td>
+                      <td
+                        className={
+                          user.video_link ? "text-green-500" : "text-red-600"
+                        }
                       >
-                        {user.video_link
-                          ? "Link available"
-                          : "No link provided"}
-                      </Link>
-                    </td>
-                    <td>{user.email ? user.email : "N/A"}</td>
-                    <td>
-                      {user.country
-                        ? user.country.charAt(0).toUpperCase() +
-                          user.country.substring(1).toLowerCase()
-                        : "N/A"}
-                    </td>
-                    <td>{user.city ? user.city : "N/A"}</td>
-                  </tr>
-                );
-              })}
+                        <Link
+                          href={user.video_link ? user.video_link : ""}
+                          target="_blank"
+                        >
+                          {user.video_link
+                            ? "Link available"
+                            : "No link provided"}
+                        </Link>
+                      </td>
+                      <td>{user.email ? user.email : "N/A"}</td>
+                      <td>
+                        {user.country
+                          ? user.country.charAt(0).toUpperCase() +
+                            user.country.substring(1).toLowerCase()
+                          : "N/A"}
+                      </td>
+                      <td>{user.city ? user.city : "N/A"}</td>
+                    </tr>
+                  );
+                })}
             </tbody>
           </table>
         </div>
@@ -179,7 +183,7 @@ const RegisteredUserTable = ({ data,searchValue }) => {
             </div>
             {currentUsersList > 0 && (
               <div className="m-4" onClick={prevUsers}>
-                <TfiControlSkipBackward c />
+                <TfiControlSkipBackward />
               </div>
             )}
             <div className="flex items-center   justify-center overflow-x-auto m-4 w-full max-w-full">

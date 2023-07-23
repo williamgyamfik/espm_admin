@@ -9,11 +9,11 @@ import SortTab from "./SortTab";
 import FilterTab from "./FilterTab";
 import RegisteredUserTable from "./RegisteredUserTable";
 
-const RegisteredUsersDisplay = ({ data,props }) => {
+const RegisteredUsersDisplay = ({ data, props }) => {
   const [showSortTab, setShowSortTab] = useState(false);
   const [showFilterTab, setFilterTab] = useState(false);
   const [active, setActive] = useState("");
-  const [searchValue, setSearchValue] = useState("")
+  const [searchValue, setSearchValue] = useState("");
 
   const closeSortTabHandler = (value) => {
     setShowSortTab(value);
@@ -33,11 +33,9 @@ const RegisteredUsersDisplay = ({ data,props }) => {
     setActive("TAB2");
   };
 
-
-  
   const searchHandler = (e) => {
     // e.preventDefault();
-    setSearchValue(e.target.value)
+    setSearchValue(e.target.value);
   };
 
   return (
@@ -65,20 +63,11 @@ const RegisteredUsersDisplay = ({ data,props }) => {
                 <AiOutlineSearch />
               </div>
               <input
-                className="w-full block text-center rounded-lg h-8 w-10"
+                className="w-full block text-center rounded-lg h-8 "
                 type="search"
                 placeholder="Search here"
                 onChange={searchHandler}
               />
-<<<<<<< HEAD
-              {/* <div className="absolute right-2 top-1 text-center ">
-                <button className=" px-2 rounded-sm bg-blue-500 text-xs text-white font-medium">
-                  Search
-                </button>
-              </div> */}
-=======
-             
->>>>>>> 93b8779156484a76aafb338c73705df14e1d4a27
             </div>
           </form>
           {/* </div> */}
@@ -103,7 +92,7 @@ const RegisteredUsersDisplay = ({ data,props }) => {
           </div>
         </div>
         <div>
-          <RegisteredUserTable data={data}  searchValue = {searchValue}/>
+          <RegisteredUserTable data={data} searchValue={searchValue} />
         </div>
       </div>
     </>

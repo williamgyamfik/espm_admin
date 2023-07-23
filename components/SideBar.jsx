@@ -30,7 +30,6 @@ const SideBar = () => {
   const [showMessage, setShowMessage] = useState(false);
   const [active, setActive] = useState("");
   const [showRegisterUser, setShowRegisterUser] = useState(false);
-  const [showAdminRoles, setShowAdminRoles] = useState(false);
 
   const registeruserhandler = () => {
     setShowRegisterUser(true);
@@ -73,10 +72,6 @@ const SideBar = () => {
 
   const closeRegisterUserForm = (value) => {
     setShowRegisterUser(value);
-  };
-
-  const adminRoleExpandHandler = () => {
-    setShowAdminRoles(true);
   };
 
   return (
@@ -177,7 +172,6 @@ const SideBar = () => {
                 sideBarToggle && "rotate-180"
               } bg-white duration-3s text-3xl border cursor-pointer absolute -right-3 rounded-full`}
             />
-<<<<<<< HEAD
             <Link href="/dashboard">
               <div
                 className={`${
@@ -267,63 +261,6 @@ const SideBar = () => {
               } hover:bg-stone-800`}
             >
               <RiSettings5Line className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />
-=======
-            <div
-              className="flex justify-between  items-center "
-              // onClick={registeruserhandler}
-            >
-              <div className="flex justify-center">
-                <FaUserPlus className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />
-                <h1
-                  className={`text-sky-500 origin-left font-medium ${
-                    sideBarToggle && "scale-0"
-                  }`}
-                  onClick=""
-                >
-                  Admin roles
-                </h1>
-              </div>
-
-              <div
-                className="pr-10 text-white"
-                onClick={adminRoleExpandHandler}
-              >
-                <RiArrowDropDownLine />
-              </div>
-            </div>
-            {showAdminRoles && (
-              <div
-                className={`${
-                  showAdminRoles
-                    ? "w-40  p-3 flex justify-center items-center "
-                    : ""
-                } text-white`}
-              >
-                <ul className="">
-                  <li onClick={registeruserhandler}>Add user</li>
-                  {showRegisterUser && (
-                    <RegisterUser closeRegisterUser={closeRegisterUserForm} />
-                  )}
-                  <li>Delete user</li>
-                  <li>Update user</li>
-                  <li>See all users</li>
-                </ul>
-              </div>
-            )}
-<div><p>hello</p></div>
-            <div className=" ">
-              <BsCalendarEvent className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />
-              <h1
-                className={`text-sky-500 origin-left font-medium ${
-                  sideBarToggle && "scale-0"
-                }`}
-              >
-                Calender
-              </h1>
-            </div>
-            <div className=" ">
-              <BsCalendarEvent className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />
->>>>>>> 93b8779156484a76aafb338c73705df14e1d4a27
               <h1
                 className={`text-sky-500 origin-left font-medium ${
                   sideBarToggle && "scale-0"
@@ -348,9 +285,9 @@ const SideBar = () => {
             </div>
           </div>
         </div>
-        {/* {showRegisterUser && (
+        {showRegisterUser && (
           <RegisterUser closeRegisterUser={closeRegisterUserForm} />
-        )} */}
+        )}
       </div>
     </>
   );
