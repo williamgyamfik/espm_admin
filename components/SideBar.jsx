@@ -11,11 +11,12 @@ import { AiOutlineClose } from "react-icons/ai";
 import { AiOutlineMessage } from "react-icons/ai";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { BsCalendarEvent } from "react-icons/bs";
-RiSettings5Line;
+
 import { BiUserCheck } from "react-icons/bi";
 import { BiHome } from "react-icons/bi";
 import { MdOutlineEmail } from "react-icons/md";
 import { RiSettings5Line } from "react-icons/ri";
+import { FcLock } from "react-icons/fc";
 
 import UserProfile from "./UserProfile";
 import AdminNotification from "./AdminNotification";
@@ -239,21 +240,6 @@ const SideBar = () => {
                 </h1>
               </div>
             </Link>
-            <div
-              className={`${
-                sideBarToggle ? "flex flex-col items-center mb-5" : "mb-5"
-              } hover:bg-stone-800`}
-              onClick={registeruserhandler}
-            >
-              <FaUserPlus className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />
-              <h1
-                className={`text-sky-500 origin-left font-medium ${
-                  sideBarToggle && "scale-0"
-                }`}
-              >
-                Admin roles
-              </h1>
-            </div>
 
             <div
               className={`${
@@ -283,8 +269,24 @@ const SideBar = () => {
                 Profile
               </h1>
             </div>
+            <div
+              className={`${
+                sideBarToggle ? "flex flex-col items-center mb-5" : "mb-5"
+              } hover:bg-stone-800`}
+              onClick={registeruserhandler}
+            >
+              <FcLock className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />
+              <h1
+                className={`text-sky-500 origin-left font-medium ${
+                  sideBarToggle && "scale-0"
+                }`}
+              >
+                Admin roles
+              </h1>
+            </div>
           </div>
         </div>
+
         {showRegisterUser && (
           <RegisterUser closeRegisterUser={closeRegisterUserForm} />
         )}
