@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import Link from "next/link";
 
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { FaUserPlus } from "react-icons/fa";
@@ -10,8 +11,11 @@ import { AiOutlineClose } from "react-icons/ai";
 import { AiOutlineMessage } from "react-icons/ai";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { BsCalendarEvent } from "react-icons/bs";
-
-import { FiSettings } from "react-icons/fc";
+RiSettings5Line;
+import { BiUserCheck } from "react-icons/bi";
+import { BiHome } from "react-icons/bi";
+import { MdOutlineEmail } from "react-icons/md";
+import { RiSettings5Line } from "react-icons/ri";
 
 import UserProfile from "./UserProfile";
 import AdminNotification from "./AdminNotification";
@@ -156,10 +160,7 @@ const SideBar = () => {
             !toggleMenu ? "hidden " : "bg-red"
           } sm:hidden absolute z-50  bg-primary-rich-black`}
         >
-          <h1 className="text-white font-semibold text-center m-3 p-2">
-            {" "}
-            Menu
-          </h1>
+          <h1 className="text-white font-semibold text-center m-3 p-2">Menu</h1>
           <div
             className={`static_content h-screen shadow-sky-500/100 shadow-lg ${
               sideBarToggle ? "w-20" : "w-72"
@@ -171,28 +172,95 @@ const SideBar = () => {
                 sideBarToggle && "rotate-180"
               } bg-white duration-3s text-3xl border cursor-pointer absolute -right-3 rounded-full`}
             />
-            <div className=" " onClick={registeruserhandler}>
+            <Link href="/dashboard">
+              <div
+                className={`${
+                  sideBarToggle
+                    ? "flex flex-col items-center mb-5 cursor-pointer"
+                    : "mb-5"
+                } hover:bg-stone-800`}
+              >
+                <BiHome className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />
+                <h1
+                  className={`text-sky-500 origin-left font-medium ${
+                    sideBarToggle && "scale-0"
+                  }`}
+                >
+                  Dashboard
+                </h1>
+              </div>
+            </Link>
+            <Link href="/clients">
+              <div
+                className={`${
+                  sideBarToggle ? "flex flex-col items-center mb-5" : "mb-5"
+                } hover:bg-stone-800`}
+              >
+                <BiUserCheck className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />
+                <h1
+                  className={`text-sky-500 origin-left font-medium ${
+                    sideBarToggle && "scale-0"
+                  }`}
+                >
+                  Registered Clients
+                </h1>
+              </div>
+            </Link>
+
+            <Link href="/email">
+              <div
+                className={`${
+                  sideBarToggle ? "flex flex-col items-center mb-5" : "mb-5"
+                } hover:bg-stone-800`}
+              >
+                <MdOutlineEmail className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />
+                <h1
+                  className={`text-sky-500 origin-left font-medium ${
+                    sideBarToggle && "scale-0"
+                  }`}
+                >
+                  Email
+                </h1>
+              </div>
+            </Link>
+            <Link href="/notification">
+              <div
+                className={`${
+                  sideBarToggle ? "flex flex-col items-center mb-5" : "mb-5"
+                } hover:bg-stone-800`}
+              >
+                <IoNotificationsOutline className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />
+                <h1
+                  className={`text-sky-500 origin-left font-medium ${
+                    sideBarToggle && "scale-0"
+                  }`}
+                >
+                  Notification
+                </h1>
+              </div>
+            </Link>
+            <div
+              className={`${
+                sideBarToggle ? "flex flex-col items-center mb-5" : "mb-5"
+              } hover:bg-stone-800`}
+              onClick={registeruserhandler}
+            >
               <FaUserPlus className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />
               <h1
                 className={`text-sky-500 origin-left font-medium ${
                   sideBarToggle && "scale-0"
                 }`}
               >
-                Admin roles Add user Delete user Update user See all users
+                Admin roles
               </h1>
             </div>
-            <div className=" ">
-              <BsCalendarEvent className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />
-              <h1
-                className={`text-sky-500 origin-left font-medium ${
-                  sideBarToggle && "scale-0"
-                }`}
-              >
-                Calender
-              </h1>
-            </div>
-            <div className=" ">
-              <BsCalendarEvent className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />
+
+            <div
+              className={`${
+                sideBarToggle ? "flex flex-col items-center mb-5" : "mb-5"
+              } hover:bg-stone-800`}
+            >
+              <RiSettings5Line className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />
               <h1
                 className={`text-sky-500 origin-left font-medium ${
                   sideBarToggle && "scale-0"
@@ -201,7 +269,11 @@ const SideBar = () => {
                 Settings
               </h1>
             </div>
-            <div className=" ">
+            <div
+              className={`${
+                sideBarToggle ? "flex flex-col items-center mb-5" : "mb-5"
+              } hover:bg-stone-800`}
+            >
               <BsCalendarEvent className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />
               <h1
                 className={`text-sky-500 origin-left font-medium ${

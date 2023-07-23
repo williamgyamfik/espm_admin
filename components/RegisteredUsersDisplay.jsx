@@ -65,11 +65,11 @@ const RegisteredUsersDisplay = ({ data }) => {
                 type="search"
                 placeholder="Search here"
               />
-              <div className="absolute right-2 top-1 text-center ">
+              {/* <div className="absolute right-2 top-1 text-center ">
                 <button className=" px-2 rounded-sm bg-blue-500 text-xs text-white font-medium">
                   Search
                 </button>
-              </div>
+              </div> */}
             </div>
           </form>
           {/* </div> */}
