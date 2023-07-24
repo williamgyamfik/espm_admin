@@ -178,7 +178,7 @@ const SideBar = () => {
                 className={`${
                   sideBarToggle
                     ? "flex flex-col items-center mb-5 cursor-pointer"
-                    : "mb-5"
+                    : "mb-10"
                 } hover:bg-stone-800`}
               >
                 <BiHome className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />

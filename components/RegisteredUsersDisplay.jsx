@@ -9,7 +9,7 @@ import SortTab from "./SortTab";
 import FilterTab from "./FilterTab";
 import RegisteredUserTable from "./RegisteredUserTable";
 
-const RegisteredUsersDisplay = ({ data, props }) => {
+const RegisteredUsersDisplay = ({ data }) => {
   const [showSortTab, setShowSortTab] = useState(false);
   const [showFilterTab, setFilterTab] = useState(false);
   const [active, setActive] = useState("");
@@ -40,7 +40,7 @@ const RegisteredUsersDisplay = ({ data, props }) => {
 
   return (
     <>
-      <div className="w-full mt-5">
+      <div className="w-full mt-10">
         <div className="relative bottom-8">
           {active === "TAB1" && showSortTab && (
             <SortTab closeSortTab={closeSortTabHandler} />

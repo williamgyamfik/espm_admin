@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import { supabase } from "@/supabaseClientLibrary/supabaseClient";
 
-const Index = () => {
+const Index = ({ data }) => {
   return (
-    <div>
-      Admin dash board here
-      <h1>Total registered clients</h1>
-    </div>
+    <>
+      <h1 className="text-2xl">Dashboard goes here</h1>
+    </>
   );
 };
 
