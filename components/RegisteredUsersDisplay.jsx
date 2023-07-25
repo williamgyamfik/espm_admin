@@ -34,8 +34,7 @@ const RegisteredUsersDisplay = ({ data }) => {
   };
 
   const searchHandler = (e) => {
-    // e.preventDefault();
-    setSearchValue(e.target.value);
+    setSearchValue(e.target.value.toLowerCase());
   };
 
   return (

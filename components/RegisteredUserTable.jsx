@@ -9,16 +9,17 @@ import { SlControlEnd } from "react-icons/sl";
 import { SlControlStart } from "react-icons/sl";
 import { TfiControlSkipForward } from "react-icons/tfi";
 import { TfiControlSkipBackward } from "react-icons/tfi";
-import { current } from "tailwindcss/colors";
 import { FaUserPlus } from "react-icons/fa";
 import RegisterUser from "./RegisterUser";
 
 const RegisteredUserTable = ({ data, searchValue }) => {
   const [currentUsersList, setCurrentUsersList] = useState(0);
   const [showRegisterForm, setShowRegisterForm] = useState(false);
+  const [searchTerm,setSearchTerm] = useState("")
+
 
   const pageNumbers = [];
-  const usersPerPage = 30;
+  const usersPerPage = 40;
 
   const startIndex = currentUsersList * usersPerPage;
   const endIndex = usersPerPage + startIndex;
@@ -86,8 +87,8 @@ const RegisteredUserTable = ({ data, searchValue }) => {
               <RiDeleteBin5Line /> <button>Delete</button>
             </div>
           </div>
-          <div className="  w-full max-w-full ">
-            <div className="w-full overflow-x-auto">
+          <div className="  w-full max-w-full min-h-0">
+            <div className="w-full overflow-x-auto h-96">
               <table className="w-full text-xs text-center overscroll-y-auto overscoll-x-auto">
                 <thead>
                   <tr className="w-full border-b-2 bg-gray-200">

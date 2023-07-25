@@ -177,9 +177,9 @@ const SideBar = () => {
               <div
                 className={`${
                   sideBarToggle
-                    ? "flex flex-col items-center mb-5 cursor-pointer"
+                    ? "flex flex-col items-center mb-5"
                     : "mb-10"
-                } hover:bg-stone-800`}
+                } hover:bg-stone-800 cursor-pointer`}
               >
                 <BiHome className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />
                 <h1
@@ -194,8 +194,8 @@ const SideBar = () => {
             <Link href="/clients">
               <div
                 className={`${
-                  sideBarToggle ? "flex flex-col items-center mb-5" : "mb-5"
-                } hover:bg-stone-800`}
+                  sideBarToggle ? "flex flex-col items-center mb-5" : "mb-10"
+                } hover:bg-stone-800 cursor-pointer`}
               >
                 <BiUserCheck className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />
                 <h1
@@ -203,7 +203,7 @@ const SideBar = () => {
                     sideBarToggle && "scale-0"
                   }`}
                 >
-                  Registered Clients
+                  Registered clients
                 </h1>
               </div>
             </Link>
@@ -211,8 +211,8 @@ const SideBar = () => {
             <Link href="/email">
               <div
                 className={`${
-                  sideBarToggle ? "flex flex-col items-center mb-5" : "mb-5"
-                } hover:bg-stone-800`}
+                  sideBarToggle ? "flex flex-col items-center mb-5" : "mb-10"
+                } hover:bg-stone-800 cursor-pointer`}
               >
                 <MdOutlineEmail className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />
                 <h1
@@ -227,8 +227,8 @@ const SideBar = () => {
             <Link href="/notification">
               <div
                 className={`${
-                  sideBarToggle ? "flex flex-col items-center mb-5" : "mb-5"
-                } hover:bg-stone-800`}
+                  sideBarToggle ? "flex flex-col items-center mb-5" : "mb-10"
+                } hover:bg-stone-800 cursor-pointer`}
               >
                 <IoNotificationsOutline className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />
                 <h1
@@ -243,7 +243,7 @@ const SideBar = () => {
 
             <div
               className={`${
-                sideBarToggle ? "flex flex-col items-center mb-5" : "mb-5"
+                sideBarToggle ? "flex flex-col items-center mb-5" : "mb-10"
               } hover:bg-stone-800`}
             >
               <RiSettings5Line className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />
@@ -257,8 +257,8 @@ const SideBar = () => {
             </div>
             <div
               className={`${
-                sideBarToggle ? "flex flex-col items-center mb-5" : "mb-5"
-              } hover:bg-stone-800`}
+                sideBarToggle ? "flex flex-col items-center mb-5" : "mb-10"
+              } hover:bg-stone-800 cursor-pointer `}
             >
               <BsCalendarEvent className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />
               <h1
@@ -271,8 +271,8 @@ const SideBar = () => {
             </div>
             <div
               className={`${
-                sideBarToggle ? "flex flex-col items-center mb-5" : "mb-5"
-              } hover:bg-stone-800`}
+                sideBarToggle ? "flex flex-col items-center mb-5" : "mb-10"
+              } hover:bg-stone-800 cursor-pointer`}
               onClick={registeruserhandler}
             >
               <FcLock className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />

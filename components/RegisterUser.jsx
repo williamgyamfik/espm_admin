@@ -41,13 +41,13 @@ const RegisterUser = (props) => {
   };
 
   return (
-    <div className="h-screen  absolute -z-20 w-full  p-3 shadow-2xl mt-10  min-h-fit">
+    <div className="h-screen  absolute -z-20 w-full  p-3 shadow-2xl mt-10 h-2/3">
       <div className="flex justify-end items-center ">
         <div className="w-10 flex justify-end " onClick={closeRegisterUserForm}>
           <AiOutlineClose className="text-red-500 bg-white rounded-lg " />
         </div>
       </div>
-      <form className="p-3 rounded p-3" onSubmit={signUpAdmin}>
+      <form className="p-3 rounded p-3 " onSubmit={signUpAdmin}>
         <div className="mb-6">
           <label
             htmlFor="email"
