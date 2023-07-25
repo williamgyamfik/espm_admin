@@ -10,7 +10,7 @@ const AdminNotification = (props) => {
       <div className="flex items-center justify-between">
         <h2 className="font-semibold">Notification</h2>
         <div onClick={closeNotificationhandler}>
-          <AiOutlineClose className="bg-red-500 rounded-lg" />
+          <AiOutlineClose className="text-red-500 rounded-lg" />
         </div>
       </div>
       <div>

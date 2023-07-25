@@ -1,6 +1,8 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+// import { useSession } from "@supabase/auth-helpers-react";
+import { useSessionContext } from "@supabase/auth-helpers-react";
 
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { FaUserPlus } from "react-icons/fa";
@@ -31,7 +33,9 @@ const SideBar = () => {
   const [showMessage, setShowMessage] = useState(false);
   const [active, setActive] = useState("");
   const [showRegisterUser, setShowRegisterUser] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
 
+  // const session = useSessionContext();
   const registeruserhandler = () => {
     setShowRegisterUser(true);
   };
@@ -75,60 +79,76 @@ const SideBar = () => {
     setShowRegisterUser(value);
   };
 
+  const { session } = useSessionContext();
+
+  useEffect(() => {
+    console.log(session);
+    if (session) {
+      setLoggedIn(true);
+    } else {
+      setLoggedIn(false);
+    }
+  }, [session]);
+
   return (
     <>
-      <div className="w-full flex justify-between items-center sm:justify-end p-1 static_content border-2 border-b-sky-500">
-        <div className="sm:hidden  static_content" onClick={toggleMenuHandler}>
-          {!toggleMenu ? (
-            <BiMenu> </BiMenu>
-          ) : (
-            <AiOutlineClose className="text-red-600 rounded-lg m-1">
-              {" "}
-            </AiOutlineClose>
-          )}
-        </div>
-        <div className="flex justify-end ">
-          {/* <div className="flex items-center"> */}
-          <div className="p-5 m-1">
-            <AiOutlineMessage onClick={openMessageHandler} />
-          </div>
-          <div className="p-5 m-1" onClick={openNotificationHandler}>
-            <IoNotificationsOutline />
-          </div>
-          {/* </div> */}
+      {loggedIn ? (
+        <nav className="w-full flex justify-between items-center sm:justify-end p-1 static_content border-2 border-b-sky-500">
           <div
-            className="cursor-pointer flex items-center p-3 gap-1 m-1"
-            onClick={openUserProfile}
+            className="sm:hidden  static_content"
+            onClick={toggleMenuHandler}
           >
-            <div className="relative">
-              <div className="absolute  bottom-0 -right-2">
-                <BiHappyAlt className=" text-sky-500 rounded-lg" />
-              </div>
+            {!toggleMenu ? (
+              <BiMenu> </BiMenu>
+            ) : (
+              <AiOutlineClose className="text-red-600 rounded-lg m-1">
+                {" "}
+              </AiOutlineClose>
+            )}
+          </div>
+          <div className="flex justify-end ">
+            {/* <div className="flex items-center"> */}
+            <div className="p-5 m-1">
+              <AiOutlineMessage onClick={openMessageHandler} />
             </div>
-            <p>Hi, Admin </p>
-            <RiArrowDropDownLine> </RiArrowDropDownLine>
-          </div>
-          <div className="relative ">
-            {active === "TAB1" && showMessage && (
-              <AdminMessage setCloseMessage={closeMessageHandler} />
-            )}
-          </div>
+            <div className="p-5 m-1" onClick={openNotificationHandler}>
+              <IoNotificationsOutline />
+            </div>
+            {/* </div> */}
+            <div
+              className="cursor-pointer flex items-center p-3 gap-1 m-1"
+              onClick={openUserProfile}
+            >
+              <div className="relative">
+                <div className="absolute  bottom-0 -right-2">
+                  <BiHappyAlt className=" text-sky-500 rounded-lg" />
+                </div>
+              </div>
+              <p>Hi, Admin </p>
+              <RiArrowDropDownLine> </RiArrowDropDownLine>
+            </div>
+            <div className="relative ">
+              {active === "TAB1" && showMessage && (
+                <AdminMessage setCloseMessage={closeMessageHandler} />
+              )}
+            </div>
 
-          <div className="relative">
-            {active === "TAB2" && showNotification && (
-              <AdminNotification
-                setCloseNotification={closeNotificationhandler}
-              />
-            )}
-          </div>
+            <div className="relative">
+              {active === "TAB2" && showNotification && (
+                <AdminNotification
+                  setCloseNotification={closeNotificationhandler}
+                />
+              )}
+            </div>
 
-          <div className="relative ">
-            {active === "TAB3" && showUserProfile && (
-              <UserProfile setCloseUserProfile={closeUserProfileHandler} />
-            )}
+            <div className="relative ">
+              {active === "TAB3" && showUserProfile && (
+                <UserProfile setCloseUserProfile={closeUserProfileHandler} />
+              )}
+            </div>
           </div>
-        </div>
-      </div>
+        </nav>
+      ) : null}
 
       <div className="flex relative">
         <div
@@ -176,9 +196,7 @@ const SideBar = () => {
             <Link href="/dashboard">
               <div
                 className={`${
-                  sideBarToggle
-                    ? "flex flex-col items-center mb-5"
-                    : "mb-10"
+                  sideBarToggle ? "flex flex-col items-center mb-5" : "mb-10"
                 } hover:bg-stone-800 cursor-pointer`}
               >
                 <BiHome className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />

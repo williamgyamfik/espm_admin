@@ -1,39 +1,32 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "@supabase/auth-helpers-react";
-import { Suspense } from "react";
-
-import Spinner from "@/components/Spinner";
+import { useSessionContext } from "@supabase/auth-helpers-react";
 import LoginForm from "@/components/LoginForm";
 
 export default function Home() {
   const router = useRouter();
   const session = useSession();
+  // const {session} = useSessionContext();
   const [userLogged, setUserLogged] = useState(false);
 
   useEffect(() => {
     if (session) {
+      console.log(session);
       setUserLogged(true);
       router.push("/dashboard");
     } else {
-      return;
+      router.push("/");
     }
   }, [session, router]);
 
-  console.log(session);
-
   return (
     <>
-      <Suspense fallback={<Spinner />}>
-        {userLogged ? (
-          <div className="bg-white h-screen  flex flex-col  text-center justify-center">
-            <Spinner />
-            <p>Loading.....please wait</p>
-          </div>
-        ) : (
-          <LoginForm />
-        )}
-      </Suspense>
+      {/* <Suspense fallback={<Spinner />}> */}
+      {userLogged ? null : ( // </div> //   <p>Loading.....please wait</p> // <div className="bg-white h-screen  flex flex-col  text-center justify-center">
+        <LoginForm />
+      )}
+      {/* </Suspense> */}
     </>
   );
 }

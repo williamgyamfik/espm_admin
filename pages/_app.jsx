@@ -5,14 +5,13 @@ import Layout from "../components/Layout";
 
 function App({ Component, pageProps }) {
   return (
-    <Layout>
-      <SessionContextProvider
-        supabaseClient={supabase}
-        initialSession={pageProps.initialSession}
-      >
-        <Component {...pageProps} />
-      </SessionContextProvider>
-    </Layout>
+    <SessionContextProvider
+      supabaseClient={supabase}
+      initialSession={pageProps.initialSession}
+    >
+      <Layout />
+      <Component {...pageProps} />
+    </SessionContextProvider>
   );
 }
 export default App;

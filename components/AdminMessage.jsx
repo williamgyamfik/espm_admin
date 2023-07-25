@@ -11,7 +11,7 @@ const AdminMessage = (props) => {
       <div className="flex justify-between items-center">
         <h2 className="font-semibold">Message</h2>
         <div onClick={closeMessageHandler}>
-          <AiOutlineClose className="bg-red-500 rounded-lg" />
+          <AiOutlineClose className="text-red-500 rounded-lg" />
         </div>
       </div>
       <div>

@@ -1,7 +1,8 @@
 import React from "react";
 import { AiOutlineClose } from "react-icons/ai";
 
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { supabase } from "@/supabaseClientLibrary/supabaseClient";
+
 import { useRouter } from "next/router";
 
 import { VscAccount } from "react-icons/vsc";
@@ -12,8 +13,6 @@ const UserProfile = (props) => {
   const closeUserProfile = () => {
     props.setCloseUserProfile(false);
   };
-
-  const supabase = useSupabaseClient();
 
   const router = useRouter();
 
@@ -28,10 +27,10 @@ const UserProfile = (props) => {
 
   return (
     <div className="w-64  absolute z-50 bg-white right-2 top-20 p-8 border shadow-lg rounded-lg">
-      <div className="flex justify-between mb-5 ">
+      <div className="flex justify-between items-center mb-5 ">
         <h2 className="font-semibold">User profile</h2>
         <div onClick={closeUserProfile}>
-          <AiOutlineClose className="bg-red-500 rounded-lg cursor-pointer" />
+          <AiOutlineClose className="text-red-500  rounded-lg cursor-pointer" />
         </div>
       </div>
       <div className="flex items-center hover:bg-slate-200 gap-5 border-b-2 cursor-pointer mb-5">
