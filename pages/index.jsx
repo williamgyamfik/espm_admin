@@ -20,13 +20,5 @@ export default function Home() {
     }
   }, [session, router]);
 
-  return (
-    <>
-      {/* <Suspense fallback={<Spinner />}> */}
-      {userLogged ? null : ( // </div> //   <p>Loading.....please wait</p> // <div className="bg-white h-screen  flex flex-col  text-center justify-center">
-        <LoginForm />
-      )}
-      {/* </Suspense> */}
-    </>
-  );
+  return <>{userLogged ? null : <LoginForm />}</>;
 }

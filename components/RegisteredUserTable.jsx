@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
-
+import { supabase } from "@/supabaseClientLibrary/supabaseClient";
 import { RiDeleteBin5Line } from "react-icons/ri";
 
 import { SlControlEnd } from "react-icons/sl";
@@ -15,11 +15,11 @@ import RegisterUser from "./RegisterUser";
 const RegisteredUserTable = ({ data, searchValue }) => {
   const [currentUsersList, setCurrentUsersList] = useState(0);
   const [showRegisterForm, setShowRegisterForm] = useState(false);
-  const [searchTerm,setSearchTerm] = useState("")
-
+  const [searchTerm, setSearchTerm] = useState("");
+  // const [selectInput, setSelectInput] = useState(false);
 
   const pageNumbers = [];
-  const usersPerPage = 40;
+  const usersPerPage = 4;
 
   const startIndex = currentUsersList * usersPerPage;
   const endIndex = usersPerPage + startIndex;
@@ -57,6 +57,17 @@ const RegisteredUserTable = ({ data, searchValue }) => {
 
   const closeRegisterUser = (value) => {
     setShowRegisterForm(value);
+  };
+
+  // const deleteRowById = async (id) => {
+  //   const { error } = await supabase.from("userProfile").delete().eq("id", id);
+  //   console.log(error);
+  // };
+
+  const deleteHandler = async (id) => {
+    const { error } = await supabase.from("userProfile").delete().eq("id", id);
+
+    const filteredUsers = data.data.filter((item) => item.id !== id);
   };
 
   return (
@@ -145,7 +156,10 @@ const RegisteredUserTable = ({ data, searchValue }) => {
                         <tr key={user.id} className="border-b-2 my-10">
                           <td>
                             <div className="flex items-center justify-center w-14 py-3">
-                              <input type="checkbox"></input>
+                              <input
+                                type="checkbox"
+                                onClick={() => deleteHandler(user.id)}
+                              ></input>
                             </div>
                           </td>
                           <td>
