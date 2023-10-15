@@ -1,46 +1,46 @@
 import React, { useState } from "react";
-
-import RegisteredUsersDisplay from "@/components/RegisteredUsersDisplay";
-
+import { useRouter } from "next/router";
+import Link from "next/link";
 import { supabase } from "@/supabaseClientLibrary/supabaseClient";
+import ClientData from "../../components/ClientData";
+import RegisteredUserTable from "@/components/RegisteredUserTable";
 
-const Index = ({ data }) => {
-  // const [page, setPage] = useState(0);
-
-  // const usersPerPage = 4;
-  // const [start, setStart] = useState(0);
-
-  // const [end, setEnd] = useState(usersPerPage);
-
-  // const nextUsers = () => {
-  //   if (data.data.length < usersPerPage) {
-  //     return;
-  //   }
-  //   setStart((prevValue) => end + 1);
-  //   setEnd((prevValue) => start + usersPerPage);
-  // };
-
-  // const prevUsers = () => {
-  //   if (start === 0 && end === usersPerPage) {
-  //     return;
-  //   }
-  //   setStart((prevValue) => start - 1 - usersPerPage);
-  //   setEnd((prevValue) => end - usersPerPage - 1);
-  // };
-
+const Index = ({ data, page, lastPage, count, totalDataCount, limit }) => {
   return (
     <>
-      <RegisteredUsersDisplay data={data} />
+      <RegisteredUserTable
+        data={data}
+        page={page}
+        lastPage={lastPage}
+        limit={limit}
+        totalDataCount={totalDataCount}
+        count={count}
+      />
     </>
   );
 };
 
 export default Index;
 
-export async function getStaticProps() {
-  const data = await supabase.from("userProfile").select("*").range(start, end);
+export async function getServerSideProps(context) {
+  const page = +context.query.page || 1;
+  const limit = 50;
+  const rangeStart = (page - 1) * limit;
+  const rangeEnd = page * limit - 1;
+
+  const data = await supabase
+    .from("userProfile")
+    .select("*", { count: "exact" })
+    .range(rangeStart, rangeEnd);
+
   return {
-    props: { data },
-    revalidate: 1,
+    props: {
+      data,
+      page,
+      lastPage: data.data.length < limit,
+      totalDataCount: data.count,
+      limit,
+      count: data.data.length,
+    },
   };
 }

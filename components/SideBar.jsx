@@ -82,7 +82,6 @@ const SideBar = () => {
   const { session } = useSessionContext();
 
   useEffect(() => {
-    console.log(session);
     if (session) {
       setLoggedIn(true);
     } else {
