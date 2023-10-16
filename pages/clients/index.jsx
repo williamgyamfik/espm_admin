@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import { useRouter } from "next/router";
-import Link from "next/link";
 import { supabase } from "@/supabaseClientLibrary/supabaseClient";
-import ClientData from "../../components/ClientData";
 import RegisteredUserTable from "@/components/RegisteredUserTable";
 
 const Index = ({ data, page, lastPage, count, totalDataCount, limit }) => {
