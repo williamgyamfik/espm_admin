@@ -11,8 +11,6 @@ import { SlControlStart } from "react-icons/sl";
 import { TfiControlSkipForward } from "react-icons/tfi";
 import { TfiControlSkipBackward } from "react-icons/tfi";
 import { FaUserPlus } from "react-icons/fa";
-import RegisterUser from "./RegisterUser";
-import ClientCard from "./ClientCard";
 
 const RegisteredUserTable = ({
   data,
@@ -46,10 +44,6 @@ const RegisteredUserTable = ({
     setClientDetails(user);
   };
 
-  const registerUserHandler = () => {
-    setShowRegisterForm(true);
-  };
-
   const closeRegisterUser = (value) => {
     setShowRegisterForm(value);
   };
@@ -71,7 +65,7 @@ const RegisteredUserTable = ({
         <div className="p-3">
           <h1 className="text-xl font-bold">Registered Users</h1>
         </div>
-        <div className="text-right " onClick={registerUserHandler}>
+        <div className="text-right ">
           <button
             type="button"
             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
@@ -92,8 +86,8 @@ const RegisteredUserTable = ({
       <div className="  w-full max-w-full min-h-0">
         <div className="w-full overflow-x-auto h-96">
           <table className="w-full text-xs text-center overscroll-y-auto overscoll-x-auto">
-            <thead>
-              <tr className="w-full border-b-2 bg-gray-200">
+            <thead className="">
+              <tr className="w-full border-b-2 bg-gray-200 ">
                 <th scope="col">
                   <div className="w-14 py-3">
                     <input type="checkbox" name="" id="" />

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { supabase } from "@/supabaseClientLibrary/supabaseClient";
 
 import { useRouter } from "next/router";
+import ClientCard from "@/components/ClientCard";
 
 const Details = ({ data }) => {
   const router = useRouter();
@@ -15,8 +16,7 @@ const Details = ({ data }) => {
 
   return (
     <div>
-      details id: {router.query.id} :{clientDetails.email}:
-      {/* :{email} : {country} */}
+      <ClientCard clientDetails={clientDetails} />
     </div>
   );
 };
