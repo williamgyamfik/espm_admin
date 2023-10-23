@@ -2,7 +2,7 @@ import React from "react";
 
 import { Card } from "flowbite-react";
 import { AiFillEdit } from "react-icons/ai";
-import EditClientCard from "./EditClientCard";
+import EditClientForm from "./EditClientForm";
 import { useState } from "react";
 
 export default function ClientCard({ clientDetails }) {
@@ -17,7 +17,7 @@ export default function ClientCard({ clientDetails }) {
   };
 
   return showEdit ? (
-    <EditClientCard
+    <EditClientForm
       clientDetails={clientDetails}
       closeDetails={closeEditHandler}
     />

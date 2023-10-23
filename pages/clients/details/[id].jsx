@@ -9,16 +9,12 @@ const Details = ({ data }) => {
   const clientId = +router.query.id;
 
   const clientDetails = data.find((client) => client.id === clientId);
-  console.log(clientDetails);
+
   if (!clientDetails) {
     return <div>....Loading</div>;
   }
 
-  return (
-    <div>
-      <ClientCard clientDetails={clientDetails} />
-    </div>
-  );
+  return <ClientCard clientDetails={clientDetails} />;
 };
 
 export default Details;
