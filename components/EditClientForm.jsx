@@ -6,45 +6,20 @@ import { supabase } from "@/supabaseClientLibrary/supabaseClient";
 import { useRouter } from "next/router";
 
 const EditClientForm = (props) => {
-  const [details, setDetails] = useState();
-
-  const [firstName, setFirstName] = useState("");
-  const [surname, setSurname] = useState("");
-  const [email, setEmail] = useState("");
-  const [country, setCountry] = useState("");
-  const [city, setCity] = useState(details?.city);
-
-  const router = useRouter();
-  const detailsId = router.query.id;
-
   useEffect(() => {
     setDetails(props.clientDetails);
   }, [props.clientDetails]);
 
-  useEffect(() => {
-    setCity(details?.city);
-  }, [details?.city]);
+  const [details, setDetails] = useState();
 
-  console.log(details, city);
+  console.log(details);
+  const router = useRouter();
+  const detailsId = router.query.id;
 
-  const firstNameHandler = (e) => {
-    setFirstName(e.target.value);
-  };
+  const detailHandler = (e) => {
+    const { name, value } = e.target;
 
-  const surnameHandler = (e) => {
-    setSurname(e.target.value);
-  };
-
-  const emailHandler = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const countryHandler = (e) => {
-    setCountry(e.target.value);
-  };
-
-  const cityHandler = (e) => {
-    setCity(e.target.value);
+    setDetails({ ...details, [name]: value });
   };
 
   const updateDetailsHandler = async () => {
@@ -53,11 +28,11 @@ const EditClientForm = (props) => {
         const { data, error } = await supabase
           .from("userProfile")
           .update({
-            first_name: firstName,
-            last_name: surname,
-            email,
-            country,
-            city,
+            first_name: details.first_name,
+            last_name: details.last_name,
+            email: details.email,
+            country: details.country,
+            city: details.city,
           })
           .eq("id", detailsId);
         console.log(data);
@@ -94,8 +69,9 @@ const EditClientForm = (props) => {
           <TextInput
             id="email1"
             type="text"
-            onChange={firstNameHandler}
-            value={firstName}
+            name="first_name"
+            onChange={detailHandler}
+            value={details?.first_name}
           />
         </div>
         <div>
@@ -105,8 +81,9 @@ const EditClientForm = (props) => {
           <TextInput
             id="password1"
             type="text"
-            onChange={surnameHandler}
-            value={surname}
+            name="last_name"
+            onChange={detailHandler}
+            value={details?.last_name}
           />
         </div>
         <div>
@@ -116,8 +93,9 @@ const EditClientForm = (props) => {
           <TextInput
             id="password1"
             type="email"
-            onChange={emailHandler}
-            value={email}
+            name="email"
+            onChange={detailHandler}
+            value={details?.email}
           />
         </div>
         <div>
@@ -127,8 +105,9 @@ const EditClientForm = (props) => {
           <TextInput
             id="password1"
             type="text"
-            onChange={countryHandler}
-            value={country}
+            name="country"
+            onChange={detailHandler}
+            value={details?.country}
           />
         </div>
         <div>
@@ -138,8 +117,9 @@ const EditClientForm = (props) => {
           <TextInput
             id="password1"
             type="text"
-            onChange={cityHandler}
-            value={city}
+            name="city"
+            onChange={detailHandler}
+            value={details?.city}
           />
         </div>
 
