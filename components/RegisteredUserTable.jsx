@@ -59,6 +59,8 @@ const RegisteredUserTable = ({
     const filteredUsers = data.data.filter((item) => item.id !== id);
   };
 
+  console.log(data);
+
   return (
     <div>
       <div className="my-3 flex justify-between items-center mt-10">

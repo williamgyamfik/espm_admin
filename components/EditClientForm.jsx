@@ -12,15 +12,17 @@ const EditClientForm = (props) => {
 
   const [details, setDetails] = useState();
 
-  console.log(details);
   const router = useRouter();
-  const detailsId = router.query.id;
+  const detailsId = +router.query.id;
+  console.log(details, typeof detailsId);
 
   const detailHandler = (e) => {
     const { name, value } = e.target;
 
     setDetails({ ...details, [name]: value });
   };
+
+  // const emailId = details.email
 
   const updateDetailsHandler = async () => {
     try {
@@ -34,7 +36,8 @@ const EditClientForm = (props) => {
             country: details.country,
             city: details.city,
           })
-          .eq("id", detailsId);
+          .eq("id", details.id)
+          .select();
         console.log(data);
         if (error) {
           console.log(error.message);
@@ -54,6 +57,7 @@ const EditClientForm = (props) => {
   const submitHandler = (e) => {
     e.preventDefault();
     updateDetailsHandler();
+    props.closeDetails(false);
   };
 
   return (
@@ -64,10 +68,10 @@ const EditClientForm = (props) => {
       >
         <div>
           <div className="mb-2 block">
-            <Label htmlFor="email1" value="First Name" />
+            <Label htmlFor="firstName1" value="First Name" />
           </div>
           <TextInput
-            id="email1"
+            id="firstName1"
             type="text"
             name="first_name"
             onChange={detailHandler}
@@ -76,10 +80,10 @@ const EditClientForm = (props) => {
         </div>
         <div>
           <div className="mb-2 block">
-            <Label htmlFor="password1" value="Surname" />
+            <Label htmlFor="lastName1" value="Surname" />
           </div>
           <TextInput
-            id="password1"
+            id="lastName1"
             type="text"
             name="last_name"
             onChange={detailHandler}
@@ -88,22 +92,23 @@ const EditClientForm = (props) => {
         </div>
         <div>
           <div className="mb-2 block">
-            <Label htmlFor="password1" value="Email" />
+            <Label htmlFor="email1" value="Email" />
           </div>
           <TextInput
-            id="password1"
+            id="email1"
             type="email"
             name="email"
             onChange={detailHandler}
             value={details?.email}
+            disabled
           />
         </div>
         <div>
           <div className="mb-2 block">
-            <Label htmlFor="password1" value="Country" />
+            <Label htmlFor="country1" value="Country" />
           </div>
           <TextInput
-            id="password1"
+            id="country1"
             type="text"
             name="country"
             onChange={detailHandler}
@@ -112,10 +117,10 @@ const EditClientForm = (props) => {
         </div>
         <div>
           <div className="mb-2 block">
-            <Label htmlFor="password1" value="City" />
+            <Label htmlFor="city1" value="City" />
           </div>
           <TextInput
-            id="password1"
+            id="city1"
             type="text"
             name="city"
             onChange={detailHandler}
