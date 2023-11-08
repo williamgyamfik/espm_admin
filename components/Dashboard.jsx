@@ -5,7 +5,8 @@ import { FcApproval } from "react-icons/fc";
 import { FcBusinesswoman } from "react-icons/fc";
 import { FcBusinessman } from "react-icons/fc";
 
-const Dashboard = () => {
+const Dashboard = ({ data, count }) => {
+  console.log(data, count);
   return (
     <div className="flex flex-col px-5 pt-5">
       <div className="pb-4">
@@ -26,7 +27,7 @@ const Dashboard = () => {
                   </p>
                 </div>
                 <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                  2367
+                  {count}
                 </div>
               </div>
             </li>
@@ -52,7 +53,7 @@ const Dashboard = () => {
                     </p>
                   </div>
                   <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                    23
+                    {count}
                   </div>
                 </div>
               </li>
@@ -67,7 +68,7 @@ const Dashboard = () => {
                     </p>
                   </div>
                   <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                    45
+                    {count}
                   </div>
                 </div>
               </li>
