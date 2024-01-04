@@ -19,7 +19,7 @@ const Index = ({ data, count }) => {
   }, [session]);
 
   return (
-    <>
+    <div className="flex flex-col  sm:mx-auto">
       {sessionInfo ? (
         <Alert color="success">
           <span className="font-medium">Session started on: </span>{" "}
@@ -34,7 +34,7 @@ const Index = ({ data, count }) => {
         // totalDataCount={totalDataCount}
         count={count}
       />
-    </>
+    </div>
   );
 };
 
