@@ -6,9 +6,9 @@ const RegisterUser = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const closeRegisterUserForm = () => {
-    props.closeRegisterUser(false);
-  };
+  // const closeRegisterUserForm = () => {
+  //   props.closeRegisterUser(false);
+  // };
 
   const emailHandler = (e) => {
     setEmail(e.target.value);
@@ -29,9 +29,9 @@ const RegisterUser = (props) => {
         email,
         password,
       });
-      if(data === null || data === undefined){
-        alert("data not available")
-        return
+      if (data === null || data === undefined) {
+        alert("data not available");
+        return;
       }
       setPassword("");
       setEmail("");
@@ -41,13 +41,8 @@ const RegisterUser = (props) => {
   };
 
   return (
-    <div className="h-screen  absolute -z-20 w-full  p-3 shadow-2xl mt-10 h-2/3">
-      <div className="flex justify-end items-center ">
-        <div className="w-10 flex justify-end " onClick={closeRegisterUserForm}>
-          <AiOutlineClose className="text-red-500 bg-white rounded-lg " />
-        </div>
-      </div>
-      <form className="p-3 rounded p-3 " onSubmit={signUpAdmin}>
+    <div className="h-screen w-full  p-10 shadow-2xl mt-10 ">
+      <form className="p-5 rounded " onSubmit={signUpAdmin}>
         <div className="mb-6">
           <label
             htmlFor="email"

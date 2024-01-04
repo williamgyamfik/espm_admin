@@ -7,23 +7,25 @@ import { useSessionContext } from "@supabase/auth-helpers-react";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { FaUserPlus } from "react-icons/fa";
 import { BiMenu } from "react-icons/bi";
+import { AiOutlineClose } from "react-icons/ai";
+
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { BiHappyAlt } from "react-icons/bi";
-import { AiOutlineClose } from "react-icons/ai";
 import { AiOutlineMessage } from "react-icons/ai";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { BsCalendarEvent } from "react-icons/bs";
 
 import { BiUserCheck } from "react-icons/bi";
 import { BiHome } from "react-icons/bi";
-import { MdOutlineEmail } from "react-icons/md";
-import { RiSettings5Line } from "react-icons/ri";
 import { FcLock } from "react-icons/fc";
+// import { MdOutlineEmail } from "react-icons/md";
+// import { RiSettings5Line } from "react-icons/ri";
 
 import UserProfile from "./UserProfile";
 import AdminNotification from "./AdminNotification";
 import AdminMessage from "./AdminMessage";
 import RegisterUser from "./RegisterUser";
+import AdminPopUp from "./AdminPopUp";
 
 const SideBar = () => {
   const [sideBarToggle, setSideBarToggle] = useState(true);
@@ -31,8 +33,8 @@ const SideBar = () => {
   const [showUserProfile, setShowUserProfile] = useState(false);
   const [showNotification, setshowNotification] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
-  const [active, setActive] = useState("");
   const [showRegisterUser, setShowRegisterUser] = useState(false);
+  const [active, setActive] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
 
   // const session = useSessionContext();
@@ -59,8 +61,8 @@ const SideBar = () => {
 
   const openUserProfile = () => {
     setShowUserProfile(true);
-
-    setActive("TAB3");
+    setShowMessage(true);
+    // setActive("TAB3");
   };
 
   const closeUserProfileHandler = (value) => {
@@ -75,10 +77,6 @@ const SideBar = () => {
     setShowMessage(value);
   };
 
-  const closeRegisterUserForm = (value) => {
-    setShowRegisterUser(value);
-  };
-
   const { session } = useSessionContext();
 
   useEffect(() => {
@@ -91,7 +89,7 @@ const SideBar = () => {
 
   return (
     <>
-      {loggedIn ? (
+      {/* {loggedIn ? (
         <nav className="w-full flex justify-between items-center sm:justify-end p-1 static_content border-2 border-b-sky-500">
           <div
             className="sm:hidden  static_content"
@@ -106,14 +104,13 @@ const SideBar = () => {
             )}
           </div>
           <div className="flex justify-end ">
-            {/* <div className="flex items-center"> */}
             <div className="p-5 m-1">
               <AiOutlineMessage onClick={openMessageHandler} />
             </div>
             <div className="p-5 m-1" onClick={openNotificationHandler}>
               <IoNotificationsOutline />
             </div>
-            {/* </div> */}
+
             <div
               className="cursor-pointer flex items-center p-3 gap-1 m-1"
               onClick={openUserProfile}
@@ -132,6 +129,12 @@ const SideBar = () => {
               )}
             </div>
 
+            <div className="relative ">
+              {showMessage && (
+                <AdminPopUp setCloseMessage={closeMessageHandler} />
+              )}
+            </div>
+
             <div className="relative">
               {active === "TAB2" && showNotification && (
                 <AdminNotification
@@ -147,13 +150,14 @@ const SideBar = () => {
             </div>
           </div>
         </nav>
-      ) : null}
+      ) : null} */}
 
-      <div className="flex relative">
+      <div className="flex relative w-64">
         <div
-          className={`hide_sidebar h-screen shadow-xl ${
-            sideBarToggle ? "w-72" : "w-20"
-          } pt-8 p-5 relative duration-300 bg-red-600`}
+          // className={`hide_sidebar h-screen shadow-xl ${
+          //   sideBarToggle ? "w-72" : "w-20"
+          // } pt-8 p-5  duration-300 bg-red-600 z-50 absolute`}
+          className="h-screen absolute bg-red-500 hide_sidebar w-44"
         >
           <BsFillArrowLeftCircleFill
             onClick={sideBarToggleHandler}
@@ -172,7 +176,7 @@ const SideBar = () => {
             </h1>
           </div>
         </div>
-
+        <div>dashboard</div>
         {/* Sidebar for mobile screen size */}
 
         <div
@@ -225,7 +229,7 @@ const SideBar = () => {
               </div>
             </Link>
 
-            <Link href="/email">
+            {/* <Link href="/email">
               <div
                 className={`${
                   sideBarToggle ? "flex flex-col items-center mb-5" : "mb-10"
@@ -256,9 +260,9 @@ const SideBar = () => {
                   Notification
                 </h1>
               </div>
-            </Link>
+            </Link> */}
 
-            <div
+            {/* <div
               className={`${
                 sideBarToggle ? "flex flex-col items-center mb-5" : "mb-10"
               } hover:bg-stone-800`}
@@ -271,8 +275,8 @@ const SideBar = () => {
               >
                 Settings
               </h1>
-            </div>
-            <div
+            </div> */}
+            {/* <div
               className={`${
                 sideBarToggle ? "flex flex-col items-center mb-5" : "mb-10"
               } hover:bg-stone-800 cursor-pointer `}
@@ -285,28 +289,30 @@ const SideBar = () => {
               >
                 Profile
               </h1>
-            </div>
-            <div
-              className={`${
-                sideBarToggle ? "flex flex-col items-center mb-5" : "mb-10"
-              } hover:bg-stone-800 cursor-pointer`}
-              onClick={registeruserhandler}
-            >
-              <FcLock className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />
-              <h1
-                className={`text-sky-500 origin-left font-medium ${
-                  sideBarToggle && "scale-0"
-                }`}
+            </div> */}
+            <Link href="/admin_roles">
+              <div
+                className={`${
+                  sideBarToggle ? "flex flex-col items-center mb-5" : "mb-10"
+                } hover:bg-stone-800 cursor-pointer`}
+                onClick={registeruserhandler}
               >
-                Admin roles
-              </h1>
-            </div>
+                <FcLock className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />
+                <h1
+                  className={`text-sky-500 origin-left font-medium ${
+                    sideBarToggle && "scale-0"
+                  }`}
+                >
+                  Admin roles
+                </h1>
+              </div>
+            </Link>
           </div>
         </div>
-
+        {/* 
         {showRegisterUser && (
           <RegisterUser closeRegisterUser={closeRegisterUserForm} />
-        )}
+        )} */}
       </div>
     </>
   );

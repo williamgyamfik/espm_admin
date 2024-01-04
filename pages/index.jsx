@@ -20,3 +20,20 @@ export default function Home() {
 
   return <>{userLogged ? null : <LoginForm />}</>;
 }
+// import { supabase } from "@/supabaseClientLibrary/supabaseClient";
+// import Layout from "../components/Layout";
+
+// import { SessionContextProvider } from "@supabase/auth-helpers-react";
+// function App({ Component, pageProps }) {
+//   return (
+//     <SessionContextProvider
+//       supabaseClient={supabase}
+//       initialSession={pageProps.initialSession}
+//     >
+//       <Layout>
+//         <Component {...pageProps} />
+//       </Layout>
+//     </SessionContextProvider>
+//   );
+// }
+// export default App;

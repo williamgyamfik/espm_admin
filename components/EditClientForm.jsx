@@ -33,8 +33,10 @@ const EditClientForm = (props) => {
             first_name: details.first_name,
             last_name: details.last_name,
             email: details.email,
-            country: details.country,
-            city: details.city,
+            age: details.age,
+            gender: details.gender,
+            phone: details.phone,
+            sports_type: details.sports_type,
           })
           .eq("id", details.id)
           .select();
@@ -105,26 +107,50 @@ const EditClientForm = (props) => {
         </div>
         <div>
           <div className="mb-2 block">
-            <Label htmlFor="country1" value="Country" />
+            <Label htmlFor="age1" value="Age" />
           </div>
           <TextInput
-            id="country1"
+            id="age1"
             type="text"
-            name="country"
+            name="age"
             onChange={detailHandler}
-            value={details?.country}
+            value={details?.age}
           />
         </div>
         <div>
           <div className="mb-2 block">
-            <Label htmlFor="city1" value="City" />
+            <Label htmlFor="gender1" value="Gender" />
           </div>
           <TextInput
-            id="city1"
+            id="gender1"
             type="text"
-            name="city"
+            name="gender"
+            onChange={detailHandler}
+            value={details?.gender}
+          />
+        </div>
+        <div>
+          <div className="mb-2 block">
+            <Label htmlFor="Phone1" value="Phone" />
+          </div>
+          <TextInput
+            id="Phone1"
+            type="number"
+            name="Phone"
             onChange={detailHandler}
             value={details?.city}
+          />
+        </div>
+        <div>
+          <div className="mb-2 block">
+            <Label htmlFor="sports_type1" value="Sports_type" />
+          </div>
+          <TextInput
+            id="sports_type1"
+            type="text"
+            name="Sports_type"
+            onChange={detailHandler}
+            value={details?.sports_type}
           />
         </div>
 

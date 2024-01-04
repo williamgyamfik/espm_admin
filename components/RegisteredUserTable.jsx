@@ -67,17 +67,6 @@ const RegisteredUserTable = ({
         <div className="p-3">
           <h1 className="text-xl font-bold">Registered Users</h1>
         </div>
-        <div className="text-right ">
-          <button
-            type="button"
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-          >
-            <div className="flex justify-end items-center ">
-              <FaUserPlus></FaUserPlus>
-              <p className="ml-2"> ADD ADMIN</p>
-            </div>
-          </button>
-        </div>
       </div>
 
       <div className="w-full p-3">
@@ -108,10 +97,17 @@ const RegisteredUserTable = ({
                   <div className="w-48 py-3"> Email</div>
                 </th>
                 <th scope="col">
-                  <div className="w-24 py-3"> Country</div>
+                  <div className="w-24 py-3"> Age</div>
+                </th>
+
+                <th scope="col">
+                  <div className="w-24 py-3"> Gender</div>
                 </th>
                 <th scope="col">
-                  <div className="w-24 py-3"> City</div>
+                  <div className="w-24 py-3"> Sports type</div>
+                </th>
+                <th scope="col">
+                  <div className="w-24 py-3"> Phone</div>
                 </th>
               </tr>
             </thead>
@@ -167,13 +163,16 @@ const RegisteredUserTable = ({
                       </Link>
                     </td>
                     <td>{user.email ? user.email : "N/A"}</td>
-                    <td>
+                    <td>{user.age ? user.age : "N/A"}</td>
+                    <td>{user.gender ? user.gender : "N/A"}</td>
+                    <td>{user.sports_type ? user.sports_type : "N/A"}</td>
+                    <td>{user.phone ? user.phone : "N/A"}</td>
+                    {/* <td>
                       {user.country
                         ? user.country.charAt(0).toUpperCase() +
                           user.country.substring(1).toLowerCase()
                         : "N/A"}
-                    </td>
-                    <td>{user.city ? user.city : "N/A"}</td>
+                    </td> */}
                   </tr>
                 );
               })}

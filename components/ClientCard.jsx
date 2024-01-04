@@ -16,14 +16,17 @@ export default function ClientCard({ clientDetails }) {
     setShowEdit(value);
   };
 
+  console.log(clientDetails);
+
   return showEdit ? (
     <EditClientForm
       clientDetails={clientDetails}
       closeDetails={closeEditHandler}
     />
   ) : (
-    <Card>
-      <div className="mb-4 flex items-center justify-between">
+    // <Card>
+    <>
+      <div className="mb-4 flex items-center justify-between p-5">
         <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">
           Client Details
         </h5>
@@ -32,7 +35,7 @@ export default function ClientCard({ clientDetails }) {
           <button>EDIT</button>
         </div>
       </div>
-      <div className="flow-root">
+      <div className="flow-root p-5">
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
           <li className="py-3 sm:py-4">
             <div className="flex items-center space-x-4">
@@ -86,11 +89,11 @@ export default function ClientCard({ clientDetails }) {
               <div className="shrink-0"></div>
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-medium text-gray-400 dark:text-white">
-                  Country
+                  Age
                 </p>
               </div>
               <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                {clientDetails.country}
+                {clientDetails.age}
               </div>
             </div>
           </li>
@@ -99,16 +102,43 @@ export default function ClientCard({ clientDetails }) {
               <div className="shrink-0"></div>
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-medium text-gray-400 dark:text-white">
-                  City
+                  Gender
                 </p>
               </div>
               <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                {clientDetails.city}
+                {clientDetails.gender}
+              </div>
+            </div>
+          </li>
+          <li className="py-3 sm:py-4">
+            <div className="flex items-center space-x-4">
+              <div className="shrink-0"></div>
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-sm font-medium text-gray-400 dark:text-white">
+                  Phone
+                </p>
+              </div>
+              <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                {clientDetails.phone}
+              </div>
+            </div>
+          </li>
+          <li className="py-3 sm:py-4">
+            <div className="flex items-center space-x-4">
+              <div className="shrink-0"></div>
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-sm font-medium text-gray-400 dark:text-white">
+                  Sports type
+                </p>
+              </div>
+              <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                {clientDetails.sports_type}
               </div>
             </div>
           </li>
         </ul>
       </div>
-    </Card>
+    </>
+    // </Card>
   );
 }

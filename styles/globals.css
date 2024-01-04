@@ -3,17 +3,14 @@
 @tailwind utilities;
 
 html,
-body {
+body,* {
  
   padding: 0;
   margin: 0;
  
 }
 
-* {
- 
-  box-sizing: border-box;
-}
+
 
 
 @media only screen and (max-width: 639px) {

@@ -5,11 +5,52 @@ import { FcApproval } from "react-icons/fc";
 import { FcBusinesswoman } from "react-icons/fc";
 import { FcBusinessman } from "react-icons/fc";
 import { FcQuestions } from "react-icons/fc";
+import Chart from "./Chart";
 
 const Dashboard = ({ data, count }) => {
-  console.log(data, count);
+  console.log(data.data, count);
+
+  let maleCount = 0;
+  let femaleCount = 0;
+  let otherCount = 0;
+  let boxingCount = 0;
+  let soccerCount = 0;
+  let otherSportsCount = 0;
+
+  data.data.forEach((person) => {
+    const gender = person.gender ? person.gender.toLowerCase() : null;
+    const sportsType = person.sports_type
+      ? person.sports_type.toLowerCase()
+      : null;
+
+    if (gender === "female") {
+      femaleCount++;
+    } else if (gender === "male") {
+      maleCount++;
+    } else {
+      otherCount++;
+    }
+
+    if (sportsType === "soccer") {
+      soccerCount++;
+    } else if (sportsType === "boxing") {
+      boxingCount++;
+    } else {
+      otherSportsCount++;
+    }
+  });
+
+  console.log(
+    maleCount,
+    femaleCount,
+    otherCount,
+    boxingCount,
+    soccerCount,
+    otherSportsCount
+  );
+
   return (
-    <div className="flex flex-col px-5 pt-5">
+    <div className="p-5 flex flex-col sm:justify-center">
       <div className="pb-4">
         <h1 className="text-2xl">Dashboard</h1>
       </div>
@@ -41,7 +82,7 @@ const Dashboard = ({ data, count }) => {
           <div className="flow-root">
             <div className="mb-4 flex items-center justify-between">
               <h5 className=" font-bold leading-none text-gray-900 dark:text-white">
-                Athletes by Gender
+                Athletes by gender
               </h5>
             </div>
             <ul className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -56,7 +97,7 @@ const Dashboard = ({ data, count }) => {
                     </p>
                   </div>
                   <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                    {count}
+                    {maleCount}
                   </div>
                 </div>
               </li>
@@ -71,7 +112,7 @@ const Dashboard = ({ data, count }) => {
                     </p>
                   </div>
                   <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                    {count}
+                    {femaleCount}
                   </div>
                 </div>
               </li>
@@ -86,7 +127,7 @@ const Dashboard = ({ data, count }) => {
                     </p>
                   </div>
                   <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                    {count}
+                    {otherCount}
                   </div>
                 </div>
               </li>
@@ -119,7 +160,7 @@ const Dashboard = ({ data, count }) => {
           <div className="flow-root">
             <div className="mb-4 flex items-center justify-between">
               <h5 className=" font-bold leading-none text-gray-900 dark:text-white">
-                Age distribution
+                Sports type count
               </h5>
             </div>
             <ul className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -130,11 +171,11 @@ const Dashboard = ({ data, count }) => {
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
-                      Male
+                      Soccer
                     </p>
                   </div>
                   <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                    {count}
+                    {soccerCount}
                   </div>
                 </div>
               </li>
@@ -145,17 +186,33 @@ const Dashboard = ({ data, count }) => {
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
-                      Female
+                      Boxing
                     </p>
                   </div>
                   <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                    {count}
+                    {boxingCount}
+                  </div>
+                </div>
+              </li>
+              <li className="pb-0 pt-3 sm:pt-4">
+                <div className="flex items-center space-x-4">
+                  <div className="shrink-0">
+                    <FcBusinesswoman />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
+                      Other sports
+                    </p>
+                  </div>
+                  <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                    {otherSportsCount}
                   </div>
                 </div>
               </li>
             </ul>
           </div>
         </div>
+        {/* <Chart /> */}
       </Card>
     </div>
   );
