@@ -213,22 +213,24 @@ const RegisteredUserTable = ({
     <div className="p-5 overflow-auto shadow-xl">
       <table className="w-full relative text-left">
         <thead className="sticky top-0 z-10 ">
-          <tr className="bg-gray-300 ">
-            <th className="hidden sm:table-cell uppercase mx-5 ">First name</th>
-            <th className="hidden sm:table-cell uppercase mx-5">Last name </th>
-            {/* <th className="hidden sm:table-cell uppercase mx-5">Email</th> */}
-            {/* <th className="hidden sm:table-cell uppercase mx-5">Link</th> */}
-            {/* <th className="hidden sm:table-cell uppercase mx-5">Age</th> */}
-            <th className="hidden sm:table-cell uppercase mx-5">Gender</th>
-            <th className="hidden sm:table-cell uppercase mx-5">Sports Type</th>
-            {/* <th className="hidden sm:table-cell uppercase mx-5">Phone</th> */}
+          <tr className="bg-green-100 ">
+            <th className="hidden sm:table-cell uppercase mx-5 p-5">
+              First name
+            </th>
+            <th className="hidden sm:table-cell uppercase mx-5 p-5">
+              Last name{" "}
+            </th>
+            <th className="hidden sm:table-cell uppercase mx-5 p-5">Gender</th>
+            <th className="hidden sm:table-cell uppercase mx-5 p-5">
+              Sports Type
+            </th>
           </tr>
         </thead>
         <tbody>
           {data.data?.map((user) => {
             return (
               <tr
-                className="hover cursor-pointer border-b-2 "
+                className="hover:bg-emerald-100 cursor-pointer border-b-2 p-10 border-b-emerald-200"
                 key={user.id}
                 onClick={() => {
                   detailsHandler(user);
@@ -241,48 +243,25 @@ const RegisteredUserTable = ({
                   <dd className="mb-4">
                     <b>Last name:</b> {user.last_name}
                   </dd>
-                  {/* <dd className="mb-4">
-                    <b>Email:</b> {user.email}
-                  </dd> */}
-                  {/* <dd className="mb-4">
-                    <b>Link:</b>
-
-                    <Link
-                      href={user.video_link ? user.video_link : ""}
-                      target="_blank"
-                      className={`${
-                        user.video_link
-                          ? "text-green-500 text-left"
-                          : "text-red-600"
-                      }  hidden sm:table-cell`}
-                    >
-                      {user.video_link ? "Link available " : "No link provided"}
-                    </Link>
-                  </dd> */}
-                  {/* <dd className="mb-4">
-                    <b>Age:</b> {user.age}
-                  </dd> */}
                   <dd className="mb-4">
                     <b>Gender:</b> {user.gender}
                   </dd>
                   <dd className="mb-4">
                     <b>Sports Type:</b> {user.sports_type}
                   </dd>
-                  {/* <dd className="mb-4">
-                    <b>Phone:</b> {user.phone}
-                  </dd> */}
                 </td>
-
                 <td className="  hidden sm:table-cell text-left">
-                  {user.first_name}
+                  <div className="p-5"> {user.first_name}</div>
                 </td>
-                <td className=" hidden sm:table-cell">{user.last_name}</td>
-                {/* <td className=" hidden sm:table-cell">{user.email}</td> */}
-
-                {/* <td className=" hidden sm:table-cell">{user.age}</td> */}
-                <td className=" hidden sm:table-cell">{user.gender}</td>
-                <td className=" hidden sm:table-cell">{user.sports_type}</td>
-                {/* <td className=" hidden sm:table-cell">{user.phone}</td> */}
+                <td className=" hidden sm:table-cell text-left">
+                  <div className="p-5">{user.last_name}</div>
+                </td>
+                <td className=" hidden sm:table-cell text-left">
+                  <div className="p-5">{user.gender}</div>
+                </td>
+                <td className=" hidden sm:table-cell text-left">
+                  <div className="p-5">{user.sports_type}</div>
+                </td>
               </tr>
             );
           })}

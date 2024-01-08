@@ -4,6 +4,7 @@ import { Card } from "flowbite-react";
 import { AiFillEdit } from "react-icons/ai";
 import EditClientForm from "./EditClientForm";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function ClientCard({ clientDetails }) {
   const [showEdit, setShowEdit] = useState(false);
@@ -31,15 +32,17 @@ export default function ClientCard({ clientDetails }) {
     // <Card>
     <div className="p-5 shadow-lg">
       <div>
-        <button className="text-blue-500 underline" onClick={backHandler}>
-          Back
-        </button>
-      </div>
-      <div className="mb-4 flex items-center justify-between p-5">
-        <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">
+        <h5 className="text-xl text-center font-bold leading-none text-gray-900 dark:text-white">
           Client Details
         </h5>
-        <div className="flex items-center" onClick={showEditHandler}>
+      </div>
+      <div className="mb-4 flex items-center justify-between p-5">
+        <div>
+          <button className="text-blue-500 underline" onClick={backHandler}>
+            Back
+          </button>
+        </div>
+        <div className="flex items-center text-red-500" onClick={showEditHandler}>
           <AiFillEdit />
           <button>EDIT</button>
         </div>
@@ -146,7 +149,7 @@ export default function ClientCard({ clientDetails }) {
             </div>
           </li>
           <li className="py-3 sm:py-4">
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-4 flex-wrap">
               <div className="shrink-0"></div>
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-medium text-gray-400 dark:text-white">
@@ -154,9 +157,11 @@ export default function ClientCard({ clientDetails }) {
                 </p>
               </div>
               <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white ">
-                <span className="cursor-pointer underline ">
-                  {clientDetails.video_link}
-                </span>
+                <Link href={clientDetails.video_link} target="_blank">
+                  <span className="cursor-pointer underline ">
+                    {clientDetails.video_link}
+                  </span>
+                </Link>
               </div>
             </div>
           </li>

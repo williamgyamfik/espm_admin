@@ -7,7 +7,7 @@ import { BiMenu } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
 import { useSessionContext } from "@supabase/auth-helpers-react";
 
-const Navbar = () => {
+const Navbar = (props) => {
   const [showMessage, setShowMessage] = useState(false);
   const [showUserProfile, setShowUserProfile] = useState(false);
   const [toggleMenu, setToggleMenu] = useState(false);
@@ -24,7 +24,7 @@ const Navbar = () => {
     setShowMessage(value);
   };
   const toggleMenuHandler = () => {
-    setToggleMenu(!toggleMenu);
+    props.toggleMenu(true);
   };
 
   useEffect(() => {
@@ -43,11 +43,12 @@ const Navbar = () => {
             className="sm:hidden  static_content"
             onClick={toggleMenuHandler}
           >
-            {!toggleMenu ? (
+            {/* {!toggleMenu ? (
               <BiMenu> </BiMenu>
             ) : (
               <AiOutlineClose className="text-red-600 rounded-lg m-1"></AiOutlineClose>
-            )}
+            )} */}
+             <BiMenu> </BiMenu>
           </div>
 
           <div className="flex justify-end ">
