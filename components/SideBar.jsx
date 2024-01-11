@@ -1,68 +1,16 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import Link from "next/link";
 
+import Link from "next/link";
+import { supabase } from "@/supabaseClientLibrary/supabaseClient";
+import { useSessionContext } from "@supabase/auth-helpers-react";
+
+import { initFlowbite } from "flowbite";
 import Image from "next/image";
 
-// import { useSession } from "@supabase/auth-helpers-react";
-import { useSessionContext } from "@supabase/auth-helpers-react";
-import companyLogo from "../assets/images/companyLogoNoBkgrd.png"
-import { BsFillArrowLeftCircleFill } from "react-icons/bs";
-import { FaUserPlus } from "react-icons/fa";
-import { BiMenu } from "react-icons/bi";
-import { AiOutlineClose } from "react-icons/ai";
-import { GrUserAdmin } from "react-icons/gr";
-import { RiArrowDropDownLine } from "react-icons/ri";
-import { BiHappyAlt } from "react-icons/bi";
-import { AiOutlineMessage } from "react-icons/ai";
-import { IoNotificationsOutline } from "react-icons/io5";
-import { BsCalendarEvent } from "react-icons/bs";
-import { RiAdminLine } from "react-icons/ri";
-import { BiUserCheck } from "react-icons/bi";
-import { BiHome } from "react-icons/bi";
-import { FcLock } from "react-icons/fc";
-import { MdOutlineLockReset } from "react-icons/md";
-import { GoSignOut } from "react-icons/go";
-// import { MdOutlineEmail } from "react-icons/md";
-// import { RiSettings5Line } from "react-icons/ri";
-
-import UserProfile from "./UserProfile";
-import AdminNotification from "./AdminNotification";
-import AdminMessage from "./AdminMessage";
-import RegisterUser from "./RegisterUser";
-import AdminPopUp from "./AdminPopUp";
-
-const SideBar = ({toggleMenu}) => {
-  const [sideBarToggle, setSideBarToggle] = useState(false);
-  // const [toggleMenu, setToggleMenu] = useState(false);
-  const [showUserProfile, setShowUserProfile] = useState(false);
-  const [showNotification, setshowNotification] = useState(false);
-  const [showMessage, setShowMessage] = useState(false);
-  const [showRegisterUser, setShowRegisterUser] = useState(false);
-  const [active, setActive] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [closeToggle,setCloseToggle] = useState(null)
-
-  // const session = useSessionContext();
-  const registeruserhandler = () => {
-    setShowRegisterUser(true);
-  };
-
-  const sideBarToggleHandler = () => {
-    setSideBarToggle(true);
-  };
-  // const toggleMenuHandler = () => {
-  //   setToggleMenu(!toggleMenu);
-  // };
-
-
-  const closeMenuHandler = () => {
-    setCloseToggle(false)
-    console.log("clicked")
-  };
-
-
+const SideBar = () => {
   const { session } = useSessionContext();
+  const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
     if (session) {
@@ -72,367 +20,133 @@ const SideBar = ({toggleMenu}) => {
     }
   }, [session]);
 
-console.log(toggleMenu)
+  const signOutHandler = async () => {
+    try {
+      const { error } = await supabase.auth.signOut();
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  useEffect(() => {
+    initFlowbite();
+  }, []);
 
   return (
     <>
-      
+      <aside
+        id="logo-sidebar"
+        className="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+        aria-label="Sidebar"
+      >
+        <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+          <ul className="space-y-2 font-medium">
+            <li>
+              <Link
+                href="/dashboard"
+                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <svg
+                  className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-emerald-500 dark:group-hover:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 22 21"
+                >
+                  <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
+                  <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
+                </svg>
+                <span className="ms-3">Dashboard</span>
+              </Link>
+            </li>
 
-      {/* <div className=" flex relative w-90" onClick={closeMenuHandler}>
-     { toggleMenu?  <div className="h-screen bg-green-100 z-50 absolute shadow-xl w-44 ">
-          <div className="p-2 mt-10">
-            <Link href="/dashboard">
-              <div className="flex  items-center  mb-10">
-                <BiHome className="text-pink-500 text-2xl float-left mr-2  rounded cursor-pointer block" />
-                <p className="text-pink-500 font-bold">Dashboard</p>
+            <li>
+              <Link
+                href="/clients"
+                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <svg
+                  className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-emerald-500 dark:group-hover:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 18"
+                >
+                  <path d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
+                </svg>
+                <span className="flex-1 ms-3 whitespace-nowrap">
+                  Registered Users
+                </span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/admin_roles"
+                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <svg
+                  className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-emerald-500 dark:group-hover:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 18 20"
+                >
+                  <path d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z" />
+                </svg>
+                <span className="flex-1 ms-3 whitespace-nowrap">
+                  Admin roles
+                </span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/reset_admin_password"
+                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <svg
+                  className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-emerald-500 dark:group-hover:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 18 16"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3"
+                  />
+                </svg>
+                <span className="flex-1 ms-3 whitespace-nowrap">
+                  Reset password
+                </span>
+              </Link>
+            </li>
+            <li>
+              <div
+                className="flex items-center p-2 cursor-pointer text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                onClick={signOutHandler}
+              >
+                <svg
+                  className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-emerald-500 dark:group-hover:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z" />
+                  <path d="M6.737 11.061a2.961 2.961 0 0 1 .81-1.515l6.117-6.116A4.839 4.839 0 0 1 16 2.141V2a1.97 1.97 0 0 0-1.933-2H7v5a2 2 0 0 1-2 2H0v11a1.969 1.969 0 0 0 1.933 2h12.134A1.97 1.97 0 0 0 16 18v-3.093l-1.546 1.546c-.413.413-.94.695-1.513.81l-3.4.679a2.947 2.947 0 0 1-1.85-.227 2.96 2.96 0 0 1-1.635-3.257l.681-3.397Z" />
+                  <path d="M8.961 16a.93.93 0 0 0 .189-.019l3.4-.679a.961.961 0 0 0 .49-.263l6.118-6.117a2.884 2.884 0 0 0-4.079-4.078l-6.117 6.117a.96.96 0 0 0-.263.491l-.679 3.4A.961.961 0 0 0 8.961 16Zm7.477-9.8a.958.958 0 0 1 .68-.281.961.961 0 0 1 .682 1.644l-.315.315-1.36-1.36.313-.318Zm-5.911 5.911 4.236-4.236 1.359 1.359-4.236 4.237-1.7.339.341-1.699Z" />
+                </svg>
+                <span className="flex-1 ms-3 whitespace-nowrap">Sign Out</span>
               </div>
-            </Link>
-            <Link href="/clients">
-              <div className="flex  items-center  mb-10">
-                <BiUserCheck className="text-green-500 text-2xl float-left mr-2  rounded cursor-pointer block" />
-                <p className="text-green-500 font-bold">Clients</p>
-              </div>
-            </Link>
-
-            <Link href="/admin_roles">
-              <div className="flex  items-center  mb-10">
-                <RiAdminLine className="text-black text-2xl float-left mr-2  rounded cursor-pointer block" />
-                <p className="text-black font-bold">Admin roles</p>
-              </div>
-            </Link>
-            <div className="flex  items-center  mb-10 cursor-pointer">
-              <MdOutlineLockReset className="text-sky-500 text-2xl float-left mr-2  rounded cursor-pointer block" />
-              <p className="text-sky-500 font-bold">Reset password</p>
-            </div>
-            <div className="flex items-center mb-10 cursor-pointer">
-              <GoSignOut className="text-red-500 text-2xl float-left mr-2  rounded cursor-pointer block" />
-              <p className="text-red-500 font-bold">Sign out</p>
-            </div>
-          </div>
-        </div> : null}
-
-
-      </div> */}
-
-<div className="flex relative w-full">
-      {toggleMenu ? (
-        <div className="h-screen bg-green-100 z-50 absolute shadow-xl w-44" onClick={closeMenuHandler}>
-          <div className="p-2">
-          <div className="flex justify-center p-2 border-b-2 border-green-500 mb-10">
-              <Image src={companyLogo} width="150"/>
-            </div>
-            <Link href="/dashboard">
-              <div className="flex items-center mb-10">
-                <BiHome className="text-pink-500 text-2xl float-left mr-2 rounded cursor-pointer block" />
-                <p className="text-pink-500 font-bold">Dashboard</p>
-              </div>
-            </Link>
-            <Link href="/clients">
-              <div className="flex items-center mb-10">
-                <BiUserCheck className="text-green-500 text-2xl float-left mr-2 rounded cursor-pointer block" />
-                <p className="text-green-500 font-bold">Clients</p>
-              </div>
-            </Link>
-            <Link href="/admin_roles">
-              <div className="flex items-center mb-10">
-                <RiAdminLine className="text-black text-2xl float-left mr-2 rounded cursor-pointer block" />
-                <p className="text-black font-bold">Admin roles</p>
-              </div>
-            </Link>
-            <div className="flex items-center mb-10 cursor-pointer">
-              <MdOutlineLockReset className="text-sky-500 text-2xl float-left mr-2 rounded cursor-pointer block" />
-              <p className="text-sky-500 font-bold">Reset password</p>
-            </div>
-            <div className="flex items-center mb-10 cursor-pointer">
-              <GoSignOut className="text-red-500 text-2xl float-left mr-2 rounded cursor-pointer block" />
-              <p className="text-red-500 font-bold">Sign out</p>
-            </div>
-          </div>
+            </li>
+          </ul>
         </div>
-      ) : null}
-
-
-<div className=" h-screen bg-green-100 z-50 absolute shadow-xl w-90 hide_sidebar" onClick={closeMenuHandler}>
-          <div className="p-2 ">
-            <div className="flex justify-center p-2 border-b-2 border-green-500 mb-10">
-              <Image src={companyLogo} width="150"/>
-            </div>
-            <Link href="/dashboard">
-              <div className="flex items-center mb-10">
-                <BiHome className="text-pink-500 text-2xl float-left mr-2 rounded cursor-pointer block" />
-                <p className="text-pink-500 font-bold">Dashboard</p>
-              </div>
-            </Link>
-            <Link href="/clients">
-              <div className="flex items-center mb-10">
-                <BiUserCheck className="text-green-500 text-2xl float-left mr-2 rounded cursor-pointer block" />
-                <p className="text-green-500 font-bold">Clients</p>
-              </div>
-            </Link>
-            <Link href="/admin_roles">
-              <div className="flex items-center mb-10">
-                <RiAdminLine className="text-black text-2xl float-left mr-2 rounded cursor-pointer block" />
-                <p className="text-black font-bold">Admin roles</p>
-              </div>
-            </Link>
-            <div className="flex items-center mb-10 cursor-pointer">
-              <MdOutlineLockReset className="text-sky-500 text-2xl float-left mr-2 rounded cursor-pointer block" />
-              <p className="text-sky-500 font-bold">Reset password</p>
-            </div>
-            <div className="flex items-center mb-10 cursor-pointer">
-              <GoSignOut className="text-red-500 text-2xl float-left mr-2 rounded cursor-pointer block" />
-              <p className="text-red-500 font-bold">Sign out</p>
-            </div>
-          </div>
-        </div>
-    </div>
+      </aside>
     </>
   );
 };
 
 export default SideBar;
-
-
-{/* {loggedIn ? (
-        <nav className="w-full flex justify-between items-center sm:justify-end p-1 static_content border-2 border-b-sky-500">
-          <div
-            className="sm:hidden  static_content"
-            onClick={toggleMenuHandler}
-          >
-            {!toggleMenu ? (
-              <BiMenu> </BiMenu>
-            ) : (
-              <AiOutlineClose className="text-red-600 rounded-lg m-1">
-                {" "}
-              </AiOutlineClose>
-            )}
-          </div>
-          <div className="flex justify-end ">
-            <div className="p-5 m-1">
-              <AiOutlineMessage onClick={openMessageHandler} />
-            </div>
-            <div className="p-5 m-1" onClick={openNotificationHandler}>
-              <IoNotificationsOutline />
-            </div>
-
-            <div
-              className="cursor-pointer flex items-center p-3 gap-1 m-1"
-              onClick={openUserProfile}
-            >
-              <div className="relative">
-                <div className="absolute  bottom-0 -right-2">
-                  <BiHappyAlt className=" text-sky-500 rounded-lg" />
-                </div>
-              </div>
-              <p>Hi, Admin </p>
-              <RiArrowDropDownLine> </RiArrowDropDownLine>
-            </div>
-            <div className="relative ">
-              {active === "TAB1" && showMessage && (
-                <AdminMessage setCloseMessage={closeMessageHandler} />
-              )}
-            </div>
-
-            <div className="relative ">
-              {showMessage && (
-                <AdminPopUp setCloseMessage={closeMessageHandler} />
-              )}
-            </div>
-
-            <div className="relative">
-              {active === "TAB2" && showNotification && (
-                <AdminNotification
-                  setCloseNotification={closeNotificationhandler}
-                />
-              )}
-            </div>
-
-            <div className="relative ">
-              {active === "TAB3" && showUserProfile && (
-                <UserProfile setCloseUserProfile={closeUserProfileHandler} />
-              )}
-            </div>
-          </div>
-        </nav>
-      ) : null} */}
-
-      {/* <div className="flex relative w-64"> */}
-      <div
-      // className={`hide_sidebar h-screen shadow-xl ${
-      //   sideBarToggle ? "w-72" : "w-20"
-      // } pt-8 p-5  duration-300 bg-red-600 z-50 absolute`}
-      // className="h-screen absolute  hide_sidebar w-44 bg-yellow-500"
-      >
-        {/* <BsFillArrowLeftCircleFill
-            onClick={sideBarToggleHandler}
-            className={`${
-              !sideBarToggle && "rotate-180"
-            } bg-white duration-3s text-3xl border cursor-pointer absolute -right-3 rounded-full`}
-          /> */}
-        {/* <div className="inline-flex "> */}
-        {/* <FaUserPlus className="text-2xl float-left mr-2  rounded cursor-pointer block" />
-            <h1
-              className={` origin-left font-medium ${
-                !sideBarToggle && "scale-0"
-              }`}
-            >
-             <Link href="/dashboard">Dashboard</Link> 
-            </h1> */}
-
-        {/* <Link href="/dashboard">
-              <div
-                className={`${
-                  sideBarToggle ? "flex flex-col items-center mb-5" : "mb-10"
-                } hover:bg-stone-800 cursor-pointer`}
-              >
-                <BiHome className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />
-                <h1
-                  className={`text-sky-500 origin-left font-medium ${
-                    sideBarToggle && "scale-0"
-                  }`}
-                >
-                  Dashboard
-                </h1>
-              </div>
-            </Link>
-
-          </div>
-        </div> */}
-
-        {/* Sidebar for mobile screen size */}
-        {/* 
-        <div
-          className={`  ${
-            !toggleMenu ? "hidden " : "bg-red"
-          } sm:hidden absolute z-50  bg-primary-rich-black`}
-        >
-          <h1 className="text-white font-semibold text-center m-3 p-2">Menu</h1>
-          <div
-            className={`static_content h-screen shadow-sky-500/100 shadow-lg ${
-              sideBarToggle ? "w-20" : "w-72"
-            } pt-8 p-5 relative duration-300 `}
-          >
-            <BsFillArrowLeftCircleFill
-              onClick={sideBarToggleHandler}
-              className={`${
-                sideBarToggle && "rotate-180"
-              } bg-white duration-3s text-3xl border cursor-pointer absolute -right-3 rounded-full`}
-            />
-            <Link href="/dashboard">
-              <div
-                className={`${
-                  sideBarToggle ? "flex flex-col items-center mb-5" : "mb-10"
-                } hover:bg-stone-800 cursor-pointer`}
-              >
-                <BiHome className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />
-                <h1
-                  className={`text-sky-500 origin-left font-medium ${
-                    sideBarToggle && "scale-0"
-                  }`}
-                >
-                  Dashboard
-                </h1>
-              </div>
-            </Link>
-            <Link href="/clients">
-              <div
-                className={`${
-                  sideBarToggle ? "flex flex-col items-center mb-5" : "mb-10"
-                } hover:bg-stone-800 cursor-pointer`}
-              >
-                <BiUserCheck className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />
-                <h1
-                  className={`text-sky-500 origin-left font-medium ${
-                    sideBarToggle && "scale-0"
-                  }`}
-                >
-                  Registered clients
-                </h1>
-              </div>
-            </Link> */}
-
-        {/* <Link href="/email">
-              <div
-                className={`${
-                  sideBarToggle ? "flex flex-col items-center mb-5" : "mb-10"
-                } hover:bg-stone-800 cursor-pointer`}
-              >
-                <MdOutlineEmail className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />
-                <h1
-                  className={`text-sky-500 origin-left font-medium ${
-                    sideBarToggle && "scale-0"
-                  }`}
-                >
-                  Email
-                </h1>
-              </div>
-            </Link>
-            <Link href="/notification">
-              <div
-                className={`${
-                  sideBarToggle ? "flex flex-col items-center mb-5" : "mb-10"
-                } hover:bg-stone-800 cursor-pointer`}
-              >
-                <IoNotificationsOutline className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />
-                <h1
-                  className={`text-sky-500 origin-left font-medium ${
-                    sideBarToggle && "scale-0"
-                  }`}
-                >
-                  Notification
-                </h1>
-              </div>
-            </Link> */}
-
-        {/* <div
-              className={`${
-                sideBarToggle ? "flex flex-col items-center mb-5" : "mb-10"
-              } hover:bg-stone-800`}
-            >
-              <RiSettings5Line className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />
-              <h1
-                className={`text-sky-500 origin-left font-medium ${
-                  sideBarToggle && "scale-0"
-                }`}
-              >
-                Settings
-              </h1>
-            </div> */}
-        {/* <div
-              className={`${
-                sideBarToggle ? "flex flex-col items-center mb-5" : "mb-10"
-              } hover:bg-stone-800 cursor-pointer `}
-            >
-              <BsCalendarEvent className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />
-              <h1
-                className={`text-sky-500 origin-left font-medium ${
-                  sideBarToggle && "scale-0"
-                }`}
-              >
-                Profile
-              </h1>
-            </div> */}
-        {/* <Link href="/admin_roles">
-              <div
-                className={`${
-                  sideBarToggle ? "flex flex-col items-center mb-5" : "mb-10"
-                } hover:bg-stone-800 cursor-pointer`}
-                onClick={registeruserhandler}
-              >
-                <FcLock className="text-white text-2xl float-left mr-2  rounded cursor-pointer block" />
-                <h1
-                  className={`text-sky-500 origin-left font-medium ${
-                    sideBarToggle && "scale-0"
-                  }`}
-                >
-                  Admin roles
-                </h1>
-              </div>
-            </Link>
-          </div>
-        </div> */}
-        {/* 
-        {showRegisterUser && (
-          <RegisterUser closeRegisterUser={closeRegisterUserForm} />
-        )} */}
-      </div>

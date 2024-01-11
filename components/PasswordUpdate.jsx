@@ -2,12 +2,10 @@ import React from "react";
 import Link from "next/link";
 
 import { useState, useEffect } from "react";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
-
+// import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { supabase } from "@/supabaseClientLibrary/supabaseClient";
 import Spinner from "../components/Spinner";
-import Router, { useRouter } from "next/router";
-
-import { toast } from "react-hot-toast";
+import { useRouter } from "next/router";
 
 const PasswordUpdate = () => {
   const [email, setEmail] = useState("");
@@ -16,7 +14,6 @@ const PasswordUpdate = () => {
 
   const [validForm, setValidForm] = useState(false);
 
-  const supabase = useSupabaseClient();
   const router = useRouter();
 
   const submitHandler = (e) => {

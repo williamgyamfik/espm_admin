@@ -1,10 +1,10 @@
-import RegisterUser from "@/components/RegisterUser";
+import RegisterAdminUser from "@/components/RegisterAdminuser";
 import React from "react";
 
 const Index = () => {
   return (
     <div>
-      <RegisterUser />
+      <RegisterAdminUser />
     </div>
   );
 };

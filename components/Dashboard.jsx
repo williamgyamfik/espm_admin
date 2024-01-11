@@ -1,11 +1,9 @@
 import React from "react";
 import { Card } from "flowbite-react";
-import Image from "next/image";
 import { FcApproval } from "react-icons/fc";
 import { FcBusinesswoman } from "react-icons/fc";
 import { FcBusinessman } from "react-icons/fc";
 import { FcQuestions } from "react-icons/fc";
-import Chart from "./Chart";
 
 const Dashboard = ({ data, count }) => {
   console.log(data.data, count);
@@ -136,26 +134,6 @@ const Dashboard = ({ data, count }) => {
         </div>
       </Card>
       <Card className=" mt-10">
-        {/* <div className="flow-root">
-          <ul className="divide-y divide-gray-200 dark:divide-gray-700 border-b-4">
-            <li className="pb-0 pt-3 sm:pt-4">
-              <div className="flex items-center space-x-4">
-                <div className="shrink-0">
-                  <FcApproval />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
-                    Total registered athletes
-                  </p>
-                </div>
-                <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                  {count}
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div> */}
-
         <div className="w-full ">
           <div className="flow-root">
             <div className="mb-4 flex items-center justify-between">
@@ -212,7 +190,6 @@ const Dashboard = ({ data, count }) => {
             </ul>
           </div>
         </div>
-        {/* <Chart /> */}
       </Card>
     </div>
   );
