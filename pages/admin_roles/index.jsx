@@ -1,12 +1,8 @@
 import React from "react";
-import RegisterAdminUser from "./components/RegisterAdminUser";
+import RegisterAdminUser from "@/components/RegisterAdminUser";
 
 const Index = () => {
-  return (
-    <div>
-      <RegisterAdminUser />
-    </div>
-  );
+  return <RegisterAdminUser />;
 };
 
 export default Index;
