@@ -1,5 +1,5 @@
-import RegisterAdminUser from "@/components/RegisterAdminuser";
 import React from "react";
+import RegisterAdminUser from "./components/RegisterAdminUser";
 
 const Index = () => {
   return (
