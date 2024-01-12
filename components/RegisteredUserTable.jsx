@@ -57,7 +57,8 @@ const RegisteredUserTable = ({
   };
 
   return (
-    <div className="p-5 overflow-auto shadow-xl">
+    // <div className=" ">
+    <div className="p-5  overflow-auto shadow-xl flex-grow ">
       <table className="w-full relative text-left">
         <thead className="sticky top-0 z-10 ">
           <tr className="bg-gray-400 ">
@@ -65,7 +66,7 @@ const RegisteredUserTable = ({
               First name
             </th>
             <th className="hidden sm:table-cell uppercase mx-5 p-5">
-              Last name{" "}
+              Last name
             </th>
             <th className="hidden sm:table-cell uppercase mx-5 p-5">Gender</th>
             <th className="hidden sm:table-cell uppercase mx-5 p-5">
@@ -115,6 +116,7 @@ const RegisteredUserTable = ({
         </tbody>
       </table>
     </div>
+    // </div>
   );
 };
 

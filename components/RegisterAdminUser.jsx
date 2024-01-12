@@ -43,7 +43,7 @@ const RegisterAdminUser = (props) => {
         <div className="w-full p-6 bg-white rounded-lg shadow-2xl dark:border md:mt-0 sm:max-w-md dark:bg-gray-800 dark:border-gray-700 sm:p-8">
           <div className="mb-10">
             <h2 className="mb-1 text-xl text-center leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-              Add Admin
+              Add Admin Form
             </h2>
           </div>
           <form

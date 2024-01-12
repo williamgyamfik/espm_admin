@@ -190,6 +190,7 @@ const Dashboard = ({ data, count }) => {
             </ul>
           </div>
         </div>
+        {/* <Chart /> */}
       </Card>
     </div>
   );

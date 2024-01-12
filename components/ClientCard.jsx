@@ -1,6 +1,5 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { Card } from "flowbite-react";
 import { AiFillEdit } from "react-icons/ai";
 import EditClientForm from "./EditClientForm";
 import { useState } from "react";
@@ -42,7 +41,10 @@ export default function ClientCard({ clientDetails }) {
             Back
           </button>
         </div>
-        <div className="flex items-center text-red-500" onClick={showEditHandler}>
+        <div
+          className="flex items-center text-red-500"
+          onClick={showEditHandler}
+        >
           <AiFillEdit />
           <button>EDIT</button>
         </div>
@@ -84,10 +86,10 @@ export default function ClientCard({ clientDetails }) {
             </div>
           </li>
           <li className="py-3 sm:py-4">
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-4 flex-wrap ">
               <div className="shrink-0"></div>
               <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-medium text-gray-400 dark:text-white">
+                <p className="truncate text-wrap text-sm font-medium text-gray-400 dark:text-white ">
                   Email
                 </p>
               </div>

@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { useSessionContext } from "@supabase/auth-helpers-react";
 import { initFlowbite } from "flowbite";
-import { AiOutlineFontColors } from "react-icons/ai";
+import { FaUser } from "react-icons/fa";
 
 const Navbar = () => {
   const { session } = useSessionContext();
@@ -67,13 +67,13 @@ const Navbar = () => {
                 <div>
                   <button
                     type="button"
-                    className="flex text-sm rounded-full ring-4 focus:ring-4 focus:ring-green-300 dark:focus:ring-green-600"
+                    className="flex text-sm rounded-full  focus:ring-4 focus:ring-green-300 dark:focus:ring-green-600"
                     aria-expanded="false"
                     data-dropdown-toggle="dropdown-user"
                   >
                     <span className="sr-only">Open user menu</span>
 
-                    <AiOutlineFontColors className="w-8 h-8 " />
+                    <FaUser className="w-4 h-4 " />
                   </button>
                 </div>
                 <div

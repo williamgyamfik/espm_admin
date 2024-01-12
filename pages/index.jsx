@@ -10,7 +10,6 @@ export default function Home() {
 
   useEffect(() => {
     if (session) {
-      console.log(session);
       setUserLogged(true);
       router.push("/dashboard");
     } else {
@@ -18,22 +17,5 @@ export default function Home() {
     }
   }, [session, router]);
 
-  return <>{userLogged ? null : <LoginForm />}</>;
+  return <LoginForm />;
 }
-// import { supabase } from "@/supabaseClientLibrary/supabaseClient";
-// import Layout from "../components/Layout";
-
-// import { SessionContextProvider } from "@supabase/auth-helpers-react";
-// function App({ Component, pageProps }) {
-//   return (
-//     <SessionContextProvider
-//       supabaseClient={supabase}
-//       initialSession={pageProps.initialSession}
-//     >
-//       <Layout>
-//         <Component {...pageProps} />
-//       </Layout>
-//     </SessionContextProvider>
-//   );
-// }
-// export default App;

@@ -1,6 +1,5 @@
 import React from "react";
 import { supabase } from "@/supabaseClientLibrary/supabaseClient";
-
 import { useRouter } from "next/router";
 import ClientCard from "@/components/ClientCard";
 

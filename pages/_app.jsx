@@ -1,41 +1,43 @@
-// import "../styles/globals.css";
-// import { useEffect, useState } from "react";
-// import { useRouter } from "next/router";
-// import { useSession } from "@supabase/auth-helpers-react";
-// import LoginForm from "@/components/LoginForm";
-
-// export default function Home() {
-//   const router = useRouter();
-//   const session = useSession();
-//   const [userLogged, setUserLogged] = useState(false);
-
-//   useEffect(() => {
-//     if (session) {
-//       console.log(session);
-//       setUserLogged(true);
-//       router.push("/dashboard");
-//     } else {
-//       router.push("/");
-//     }
-//   }, [session, router]);
-
-//   return <>{userLogged ? null : <LoginForm />}</>;
-// }
 import "../styles/globals.css";
 import { supabase } from "@/supabaseClientLibrary/supabaseClient";
 import Layout from "../components/Layout";
-
+import { useRouter } from "next/router";
 import { SessionContextProvider } from "@supabase/auth-helpers-react";
+import { useEffect, useState } from "react";
+import { Roboto } from "@next/font/google";
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: "400",
+});
+
 function App({ Component, pageProps }) {
+  const router = useRouter();
+  console.log(router);
+
+  // const [excludeRoute, setExcludeRoute] = useState(false);
+  // const homeRoute = router.asPath === "/";
+  // useEffect(() => {
+  //   if (homeRoute) {
+  //     setExcludeRoute(true);
+  //   }
+  // }, [homeRoute]);
+
   return (
-    <SessionContextProvider
-      supabaseClient={supabase}
-      initialSession={pageProps.initialSession}
-    >
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </SessionContextProvider>
+    <main className={roboto.className}>
+      <SessionContextProvider
+        supabaseClient={supabase}
+        initialSession={pageProps.initialSession}
+      >
+        {router.asPath === "/" ? (
+          <Component {...pageProps} />
+        ) : (
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        )}
+      </SessionContextProvider>
+    </main>
   );
 }
 export default App;
