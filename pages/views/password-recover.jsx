@@ -3,11 +3,7 @@ import React from "react";
 import { useReducer } from "react";
 
 const PassWordRecover = () => {
-  return (
-    <div>
-      <PasswordRecover />
-    </div>
-  );
+  return <PasswordRecover />;
 };
 
 export default PassWordRecover;

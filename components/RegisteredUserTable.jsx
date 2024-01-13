@@ -4,6 +4,7 @@ import { supabase } from "@/supabaseClientLibrary/supabaseClient";
 import { useRouter } from "next/router";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import Link from "next/link";
+import SearchBar from "./SearchBar";
 
 import { SlControlEnd } from "react-icons/sl";
 import { SlControlStart } from "react-icons/sl";
@@ -59,6 +60,9 @@ const RegisteredUserTable = ({
   return (
     // <div className=" ">
     <div className="p-5  overflow-auto shadow-xl flex-grow ">
+      <div className="my-5">
+        <SearchBar />
+      </div>
       <table className="w-full relative text-left">
         <thead className="sticky top-0 z-10 ">
           <tr className="bg-gray-400 ">

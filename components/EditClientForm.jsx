@@ -4,13 +4,15 @@ import { VscClose } from "react-icons/vsc";
 import { Button, Label, TextInput } from "flowbite-react";
 import { supabase } from "@/supabaseClientLibrary/supabaseClient";
 import { useRouter } from "next/router";
+import Spinner from "./Spinner";
 
 const EditClientForm = (props) => {
+  const [details, setDetails] = useState();
+  const [spinner, setSpinner] = useState(false);
+
   useEffect(() => {
     setDetails(props.clientDetails);
   }, [props.clientDetails]);
-
-  const [details, setDetails] = useState();
 
   const router = useRouter();
   const detailsId = +router.query.id;
@@ -22,6 +24,7 @@ const EditClientForm = (props) => {
   };
 
   const updateDetailsHandler = async () => {
+    setSpinner(true);
     try {
       if (details.id === detailsId) {
         const { data, error } = await supabase
@@ -47,6 +50,7 @@ const EditClientForm = (props) => {
     } catch (error) {
       console.log(error.message);
     }
+    setSpinner(false);
   };
 
   const closeHandler = () => {
@@ -58,7 +62,18 @@ const EditClientForm = (props) => {
     updateDetailsHandler();
   };
 
-  console.log(details);
+  if (spinner) {
+    return (
+      <div className="mt-40 flex  justify-center">
+        <div className="mt-20">
+          <Spinner />
+          <p>Sending request....</p>
+        </div>
+      </div>
+    );
+  }
+
+  console.log(details, router);
 
   return (
     <div className=" flex flex-col flex-1 pt-4 sm:px-0 min-h-0 ">
@@ -66,7 +81,7 @@ const EditClientForm = (props) => {
       <div className="flex flex-1 flex-col p-2">
         <h1 className="font-bold text-center">Edit Client form</h1>
         <div className="flex align-center justify-center mt-10 ">
-          <form className="mx-2 w-64 sm:w-full" onClick={submitHandler}>
+          <form className="mx-2 w-64 sm:w-full" onSubmit={submitHandler}>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
               <div className="flex flex-col flex-wrap ">
                 <div className="mb-2 block">

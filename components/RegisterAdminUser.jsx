@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { supabase } from "@/supabaseClientLibrary/supabaseClient";
+import Spinner from "./Spinner";
 
-const RegisterAdminUser = (props) => {
+const RegisterAdminUser = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  // const closeRegisterUserForm = () => {
+  const [spinner, setSpinner] = useState(false);
 
   const emailHandler = (e) => {
     setEmail(e.target.value);
@@ -20,7 +20,7 @@ const RegisterAdminUser = (props) => {
     if (email === "" && password === "") {
       return;
     }
-
+    setSpinner(true);
     try {
       const { data, error } = await supabase.auth.signUp({
         email,
@@ -35,7 +35,19 @@ const RegisterAdminUser = (props) => {
     } catch (error) {
       console.log(error);
     }
+    setSpinner(false);
   };
+
+  if (spinner) {
+    return (
+      <div className="mt-40 flex  justify-center">
+        <div className="mt-20">
+          <Spinner />
+          <p>Sending request....</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <section className="mt-10">

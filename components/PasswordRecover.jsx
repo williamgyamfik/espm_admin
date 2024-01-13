@@ -3,12 +3,13 @@ import Link from "next/link";
 import { useState } from "react";
 import toaster, { Toast, Toaster, toast } from "react-hot-toast";
 import { useRouter } from "next/router";
-
+import Spinner from "./Spinner";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 
 const PasswordRecover = () => {
   const supabase = useSupabaseClient();
   const [email, setEmail] = useState("");
+  const [spinner, setSpinner] = useState(false);
 
   const router = useRouter();
 
@@ -25,14 +26,12 @@ const PasswordRecover = () => {
     if (!email.trim().includes("@")) {
       return;
     }
-
+    setSpinner(true);
     try {
       const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
         redirectTo: `/views/profile/password-update
         }`,
       });
-
-      console.log(data);
 
       if (data !== null) {
         // toast.success("Email sent", { duration: 3000 });
@@ -46,7 +45,19 @@ const PasswordRecover = () => {
       console.log(error);
       toast.error("user email not authenticated");
     }
+    setSpinner(false);
   };
+
+  if (spinner) {
+    return (
+      <div className="mt-40 flex  justify-center">
+        <div className="mt-20">
+          <Spinner />
+          <p>Sending request....</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <section className=" mt-10">

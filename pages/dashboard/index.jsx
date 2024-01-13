@@ -21,8 +21,10 @@ const Index = ({ data, count }) => {
   return (
     <div className="flex flex-col  sm:mx-auto">
       {sessionInfo ? (
-        <Alert color="success">
-          <span className="font-medium">Session started on: </span>{" "}
+        <Alert className="bg-green-200 text-red-500">
+          <span className="font-medium">
+            Welcome, your session started on:{" "}
+          </span>{" "}
           {sessionInfo}
         </Alert>
       ) : (
