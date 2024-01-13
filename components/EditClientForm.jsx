@@ -56,16 +56,17 @@ const EditClientForm = (props) => {
   const submitHandler = (e) => {
     e.preventDefault();
     updateDetailsHandler();
-    props.closeDetails(false);
   };
+
+  console.log(details);
 
   return (
     <div className=" flex flex-col flex-1 pt-4 sm:px-0 min-h-0 ">
       {/* <div className="w-84 shadow-xl bg-base-100"> */}
-      <div className="flex flex-1 flex-col p-2  ">
+      <div className="flex flex-1 flex-col p-2">
         <h1 className="font-bold text-center">Edit Client form</h1>
         <div className="flex align-center justify-center mt-10 ">
-          <form onClick={submitHandler}>
+          <form className="mx-2 w-64 sm:w-full" onClick={submitHandler}>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
               <div className="flex flex-col flex-wrap ">
                 <div className="mb-2 block">
@@ -143,7 +144,7 @@ const EditClientForm = (props) => {
               </div>
               <div className="flex flex-col flex-wrap ">
                 <div className="mb-2 block">
-                  <Label htmlFor="sports_type1" value="Sports_type" />
+                  <Label htmlFor="sports_type1" value="Sports type" />
                 </div>
                 <TextInput
                   id="sports_type1"
@@ -154,7 +155,7 @@ const EditClientForm = (props) => {
                 />
               </div>
             </div>
-            <div className="flex flex-wrap gap-5 mt-10 justify-center">
+            <div className="flex flex-wrap gap-5 mt-10 justify-center center-align">
               <Button type="submit" className="w-96 bg-emerald-500">
                 <VscSave /> SAVE
               </Button>

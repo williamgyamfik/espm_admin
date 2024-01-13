@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import Link from "next/link";
 import { useSessionContext } from "@supabase/auth-helpers-react";
+import { supabase } from "@/supabaseClientLibrary/supabaseClient";
 import { initFlowbite } from "flowbite";
 import { FaUser } from "react-icons/fa";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
   const { session } = useSessionContext();
+  const router = useRouter();
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -20,6 +23,15 @@ const Navbar = () => {
   useEffect(() => {
     initFlowbite();
   }, []);
+
+  const signOutHandler = async () => {
+    try {
+      const { error } = await supabase.auth.signOut();
+      router.push("/");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return (
     <>
@@ -43,8 +55,8 @@ const Navbar = () => {
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    clip-rule="evenodd"
-                    fill-rule="evenodd"
+                    clipRule="evenodd"
+                    fillRule="evenodd"
                     d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
                   ></path>
                 </svg>
@@ -88,7 +100,7 @@ const Navbar = () => {
                       Signed In as
                     </p>
                     <p
-                      className="text-sm font-medium text-gray-900 truncate dark:text-gray-300"
+                      className="text-sm text-black font-semibold truncate dark:text-gray-300"
                       role="none"
                     >
                       Administrator
@@ -106,13 +118,14 @@ const Navbar = () => {
                     </li>
 
                     <li>
-                      <a
+                      <div
                         href="#"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                        className="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                         role="menuitem"
+                        onClick={signOutHandler}
                       >
                         Logout
-                      </a>
+                      </div>
                     </li>
                   </ul>
                 </div>

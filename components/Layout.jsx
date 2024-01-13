@@ -9,10 +9,19 @@ const Layout = ({ children }) => {
     initFlowbite();
   }, []);
 
+  const customTheme = {
+    sidebar: {
+      root: {
+        base: "bg-red-500",
+        inner: "bg-red-500",
+      },
+    },
+  };
+
   return (
     <>
       <Navbar />
-      <SideBar />
+      <SideBar theme={customTheme.sidebar} />
       <div className="p-4 mt-14 sm:ml-64  ">{children}</div>
     </>
   );

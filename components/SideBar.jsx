@@ -1,15 +1,17 @@
 import React from "react";
 import { useState, useEffect } from "react";
-
 import Link from "next/link";
+import { useRouter } from "next/router";
+import Image from "next/image";
+
 import { supabase } from "@/supabaseClientLibrary/supabaseClient";
 import { useSessionContext } from "@supabase/auth-helpers-react";
 
 import { initFlowbite } from "flowbite";
-import Image from "next/image";
 
-const SideBar = () => {
+const SideBar = ({ theme }) => {
   const { session } = useSessionContext();
+  const router = useRouter();
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -23,11 +25,11 @@ const SideBar = () => {
   const signOutHandler = async () => {
     try {
       const { error } = await supabase.auth.signOut();
+      router.push("/");
     } catch (error) {
       console.log(error.message);
     }
   };
-
   useEffect(() => {
     initFlowbite();
   }, []);
@@ -37,6 +39,7 @@ const SideBar = () => {
       <aside
         id="logo-sidebar"
         className="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+        // className={`fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700 ${theme.root.base} ${theme.root.inner}`}
         aria-label="Sidebar"
       >
         <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
@@ -112,9 +115,9 @@ const SideBar = () => {
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3"
                   />
                 </svg>

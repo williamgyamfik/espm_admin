@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-
 import { useState, useEffect } from "react";
 // import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { supabase } from "@/supabaseClientLibrary/supabaseClient";
@@ -18,9 +17,6 @@ const PasswordUpdate = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-
-    console.log("done");
-
     passwordResetHandler();
     setEmail("");
     setPassword("");

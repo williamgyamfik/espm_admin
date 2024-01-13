@@ -6,8 +6,9 @@ import { useState } from "react";
 import Link from "next/link";
 
 export default function ClientCard({ clientDetails }) {
-  const [showEdit, setShowEdit] = useState(false);
   const router = useRouter();
+  const [showEdit, setShowEdit] = useState(false);
+
   const showEditHandler = () => {
     setShowEdit(true);
   };
@@ -20,15 +21,12 @@ export default function ClientCard({ clientDetails }) {
     router.push("/clients");
   };
 
-  console.log(clientDetails);
-
   return showEdit ? (
     <EditClientForm
       clientDetails={clientDetails}
       closeDetails={closeEditHandler}
     />
   ) : (
-    // <Card>
     <div className="p-5 shadow-lg">
       <div>
         <h5 className="text-xl text-center font-bold leading-none text-gray-900 dark:text-white">
@@ -52,7 +50,7 @@ export default function ClientCard({ clientDetails }) {
       <div className="flow-root p-5">
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
           <li className="py-3 sm:py-4">
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-4 flex-wrap whitespace-normal">
               <div className="shrink-0">
                 {/* <No Display Name
                   alt="Neil image"
@@ -73,7 +71,7 @@ export default function ClientCard({ clientDetails }) {
             </div>
           </li>
           <li className="py-3 sm:py-4">
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-4 flex-wrap whitespace-normal">
               <div className="shrink-0"></div>
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-medium text-gray-400 dark:text-white">
@@ -86,7 +84,7 @@ export default function ClientCard({ clientDetails }) {
             </div>
           </li>
           <li className="py-3 sm:py-4">
-            <div className="flex items-center space-x-4 flex-wrap ">
+            <div className="flex items-center space-x-4 flex-wrap whitespace-normal">
               <div className="shrink-0"></div>
               <div className="min-w-0 flex-1">
                 <p className="truncate text-wrap text-sm font-medium text-gray-400 dark:text-white ">
@@ -99,7 +97,7 @@ export default function ClientCard({ clientDetails }) {
             </div>
           </li>
           <li className="py-3 sm:py-4">
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-4 flex-wrap whitespace-normal">
               <div className="shrink-0"></div>
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-medium text-gray-400 dark:text-white">
@@ -112,7 +110,7 @@ export default function ClientCard({ clientDetails }) {
             </div>
           </li>
           <li className="py-3 sm:py-4">
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-4 flex-wrap whitespace-normal">
               <div className="shrink-0"></div>
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-medium text-gray-400 dark:text-white">
@@ -125,7 +123,7 @@ export default function ClientCard({ clientDetails }) {
             </div>
           </li>
           <li className="py-3 sm:py-4">
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-4 flex-wrap whitespace-normal">
               <div className="shrink-0"></div>
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-medium text-gray-400 dark:text-white">
@@ -138,7 +136,7 @@ export default function ClientCard({ clientDetails }) {
             </div>
           </li>
           <li className="py-3 sm:py-4">
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-4 flex-wrap whitespace-normal">
               <div className="shrink-0"></div>
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-medium text-gray-400 dark:text-white">
@@ -151,7 +149,7 @@ export default function ClientCard({ clientDetails }) {
             </div>
           </li>
           <li className="py-3 sm:py-4">
-            <div className="flex items-center space-x-4 flex-wrap">
+            <div className="flex items-center space-x-4 flex-wrap whitespace-normal">
               <div className="shrink-0"></div>
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-medium text-gray-400 dark:text-white">
@@ -170,6 +168,5 @@ export default function ClientCard({ clientDetails }) {
         </ul>
       </div>
     </div>
-    // </Card>
   );
 }
