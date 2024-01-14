@@ -58,23 +58,52 @@ const RegisteredUserTable = ({
   };
 
   return (
-    // <div className=" ">
-    <div className="p-5  overflow-auto shadow-xl flex-grow ">
-      <div className="my-5">
-        <SearchBar />
-      </div>
-      <table className="w-full relative text-left">
-        <thead className="sticky top-0 z-10 ">
-          <tr className="bg-gray-400 ">
-            <th className="hidden sm:table-cell uppercase mx-5 p-5">
+    <div className="relative overflow-x-auto overflow-y-auto shadow-md sm:rounded-lg">
+      <SearchBar />
+      <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead className="text-xs static text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <tr>
+            {/* <th scope="col" className="p-4">
+                <div className="flex items-center">
+                  <input
+                    id="checkbox-all-search"
+                    type="checkbox"
+                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  />
+                  <label for="checkbox-all-search" className="sr-only">
+                    checkbox
+                  </label>
+                </div>
+              </th> */}
+            <th
+              scope="col"
+              className="px-6 py-3 hidden sm:table-cell uppercase"
+            >
               First name
             </th>
-            <th className="hidden sm:table-cell uppercase mx-5 p-5">
-              Last name
+            <th
+              scope="col"
+              className="hidden sm:table-cell uppercase px-6 py-3"
+            >
+              Surname
             </th>
-            <th className="hidden sm:table-cell uppercase mx-5 p-5">Gender</th>
-            <th className="hidden sm:table-cell uppercase mx-5 p-5">
-              Sports Type
+            <th
+              scope="col"
+              className="hidden sm:table-cell uppercase px-6 py-3"
+            >
+              Gender
+            </th>
+            <th
+              scope="col"
+              className="hidden sm:table-cell uppercase px-6 py-3"
+            >
+              Sports type
+            </th>
+            <th
+              scope="col"
+              className="hidden sm:table-cell uppercase px-6 py-3"
+            >
+              Action
             </th>
           </tr>
         </thead>
@@ -82,12 +111,31 @@ const RegisteredUserTable = ({
           {data.data?.map((user) => {
             return (
               <tr
-                className="hover:bg-gray-200 cursor-pointer border-b-2 p-10 "
                 key={user.id}
+                className="bg-white border-b cursor-pointer dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                 onClick={() => {
                   detailsHandler(user);
                 }}
               >
+                {/* <td className="w-4 p-4">
+                    <div className="flex items-center">
+                      <input
+                        id="checkbox-table-search-1"
+                        type="checkbox"
+                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label for="checkbox-table-search-1" className="sr-only">
+                        checkbox
+                      </label>
+                    </div>
+                  </td> */}
+                {/* <th
+                scope="row"
+                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              >
+                Apple MacBook Pro 17
+              </th> */}
+
                 <td className="sm:hidden border-b-2 border-b-sky-500 w-full p-5 max-w-0 sm:w-auto sm:max-w-none">
                   <dd className="mb-4">
                     <b>First name:</b> {user.first_name}
@@ -102,17 +150,27 @@ const RegisteredUserTable = ({
                     <b>Sports Type:</b> {user.sports_type}
                   </dd>
                 </td>
-                <td className="  hidden sm:table-cell text-left">
-                  <div className="p-5"> {user.first_name}</div>
+                <td className="hidden sm:table-cell px-6 py-4">
+                  {user.first_name}
                 </td>
-                <td className=" hidden sm:table-cell text-left">
-                  <div className="p-5">{user.last_name}</div>
+                <td className="hidden sm:table-cell px-6 py-4">
+                  {user.last_name}
                 </td>
-                <td className=" hidden sm:table-cell text-left">
-                  <div className="p-5">{user.gender}</div>
+                <td className="hidden sm:table-cell px-6 py-4">
+                  {user.gender}
                 </td>
-                <td className=" hidden sm:table-cell text-left">
-                  <div className="p-5">{user.sports_type}</div>
+                <td className="hidden sm:table-cell px-6 py-4">
+                  {user.sports_type}
+                </td>
+                <td className="hidden sm:table-cell px-6 py-4">
+                  <p
+                    onClick={() => {
+                      detailsHandler(user);
+                    }}
+                    className="font-medium text-blue-600 dark:text-blue-500 hover:underline cursor-pointer"
+                  >
+                    View details
+                  </p>
                 </td>
               </tr>
             );
@@ -120,7 +178,6 @@ const RegisteredUserTable = ({
         </tbody>
       </table>
     </div>
-    // </div>
   );
 };
 
