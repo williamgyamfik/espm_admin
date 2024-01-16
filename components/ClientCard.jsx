@@ -169,11 +169,11 @@ export default function ClientCard({ clientDetails }) {
                   Video link
                 </p>
               </div>
-              <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white ">
+              <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white underline ">
                 <Link href={clientDetails.video_link} target="_blank">
-                  <span className="cursor-pointer underline ">
-                    {clientDetails.video_link}
-                  </span>
+                  {/* <span className="cursor-pointer underline "> */}
+                  {clientDetails.video_link}
+                  {/* </span> */}
                 </Link>
               </div>
             </div>

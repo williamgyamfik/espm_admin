@@ -152,9 +152,9 @@ const EditClientForm = (props) => {
                 <TextInput
                   id="Phone1"
                   type="number"
-                  name="Phone"
+                  name="phone"
                   onChange={detailHandler}
-                  value={details?.city}
+                  value={details?.phone}
                 />
               </div>
               <div className="flex flex-col flex-wrap ">
@@ -164,7 +164,7 @@ const EditClientForm = (props) => {
                 <TextInput
                   id="sports_type1"
                   type="text"
-                  name="Sports_type"
+                  name="sports_type"
                   onChange={detailHandler}
                   value={details?.sports_type}
                 />

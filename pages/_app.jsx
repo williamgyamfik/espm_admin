@@ -15,22 +15,22 @@ function App({ Component, pageProps }) {
   const router = useRouter();
 
   return (
-    <div className={roboto.className}>
-      <SessionContextProvider
-        supabaseClient={supabase}
-        initialSession={pageProps.initialSession}
-      >
-        {router.asPath === "/" ||
-        router.asPath === "/views/password-recover" ||
-        router.asPath === "/views/profile/password-update" ? (
+    // <div className={roboto.className}>
+    <SessionContextProvider
+      supabaseClient={supabase}
+      initialSession={pageProps.initialSession}
+    >
+      {router.asPath === "/" ||
+      router.asPath === "/views/password-recover" ||
+      router.asPath === "/views/profile/password-update" ? (
+        <Component {...pageProps} />
+      ) : (
+        <Layout>
           <Component {...pageProps} />
-        ) : (
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        )}
-      </SessionContextProvider>
-    </div>
+        </Layout>
+      )}
+    </SessionContextProvider>
+    // </div>
   );
 }
 export default App;
