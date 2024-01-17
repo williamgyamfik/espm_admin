@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { supabase } from "@/supabaseClientLibrary/supabaseClient";
 import Spinner from "./Spinner";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
 
 const RegisterAdminUser = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [spinner, setSpinner] = useState(false);
+
+  const supabase = useSupabaseClient();
 
   const emailHandler = (e) => {
     setEmail(e.target.value);
@@ -74,9 +76,10 @@ const RegisterAdminUser = () => {
                 name="email"
                 id="email1"
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                required=""
+                required
                 value={email}
                 onChange={emailHandler}
+                placeholder="Enter a valid email"
               />
             </div>
             <div className="">
@@ -91,7 +94,7 @@ const RegisterAdminUser = () => {
                 name="password"
                 id="password1"
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                required=""
+                required
                 value={password}
                 onChange={passwordHandler}
               />
@@ -108,7 +111,7 @@ const RegisterAdminUser = () => {
                 name="confirm-password"
                 id="confirm-password1"
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                required=""
+                required
                 // value={password}
                 onChange={passwordHandler}
               />

@@ -93,6 +93,7 @@ const EditClientForm = (props) => {
                   name="first_name"
                   onChange={detailHandler}
                   value={details?.first_name}
+                  required
                 />
               </div>
               <div className="flex flex-col flex-wrap">
@@ -105,6 +106,7 @@ const EditClientForm = (props) => {
                   name="last_name"
                   onChange={detailHandler}
                   value={details?.last_name}
+                  required
                 />
               </div>
               <div className="flex flex-col flex-wrap ">
@@ -131,6 +133,7 @@ const EditClientForm = (props) => {
                   name="age"
                   onChange={detailHandler}
                   value={details?.age}
+                  required
                 />
               </div>
               <div className="flex flex-col flex-wrap ">
@@ -143,6 +146,7 @@ const EditClientForm = (props) => {
                   name="gender"
                   onChange={detailHandler}
                   value={details?.gender}
+                  required
                 />
               </div>
               <div className="flex flex-col flex-wrap ">
@@ -155,6 +159,7 @@ const EditClientForm = (props) => {
                   name="phone"
                   onChange={detailHandler}
                   value={details?.phone}
+                  required
                 />
               </div>
               <div className="flex flex-col flex-wrap ">
@@ -167,6 +172,7 @@ const EditClientForm = (props) => {
                   name="sports_type"
                   onChange={detailHandler}
                   value={details?.sports_type}
+                  required
                 />
               </div>
             </div>

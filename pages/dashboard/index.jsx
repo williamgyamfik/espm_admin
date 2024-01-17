@@ -19,7 +19,7 @@ const Index = ({ data, count }) => {
   }, [session]);
 
   return (
-    <div className="flex flex-col  sm:mx-auto">
+    <div className="flex flex-col  ">
       {sessionInfo ? (
         <Alert className="bg-green-200 text-red-500">
           <span className="font-medium">

@@ -4,6 +4,9 @@ import { FcApproval } from "react-icons/fc";
 import { FcBusinesswoman } from "react-icons/fc";
 import { FcBusinessman } from "react-icons/fc";
 import { FcQuestions } from "react-icons/fc";
+import { GiSoccerKick } from "react-icons/gi";
+import { GiBoxingGlove } from "react-icons/gi";
+import { MdOutlineSportsScore } from "react-icons/md";
 
 const Dashboard = ({ data, count }) => {
   console.log(data.data, count);
@@ -62,7 +65,7 @@ const Dashboard = ({ data, count }) => {
                   <FcApproval />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
+                  <p className="truncate text-sm font-medium text-gray-900 dark:text-white ">
                     Total registered athletes
                   </p>
                 </div>
@@ -79,7 +82,7 @@ const Dashboard = ({ data, count }) => {
         <div className="w-full ">
           <div className="flow-root">
             <div className="mb-4 flex items-center justify-between">
-              <h5 className=" font-bold leading-none text-gray-900 dark:text-white">
+              <h5 className=" font-bold leading-none text-gray-900 dark:text-white ">
                 Athletes by gender
               </h5>
             </div>
@@ -115,12 +118,12 @@ const Dashboard = ({ data, count }) => {
                 </div>
               </li>
               <li className="pb-0 pt-3 sm:pt-4">
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-4 ">
                   <div className="shrink-0">
                     <FcQuestions />
                   </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
+                  <div className="min-w-0 flex-1 ">
+                    <p className="truncate text-sm font-medium text-gray-900 dark:text-white ">
                       Other
                     </p>
                   </div>
@@ -137,7 +140,7 @@ const Dashboard = ({ data, count }) => {
         <div className="w-full ">
           <div className="flow-root">
             <div className="mb-4 flex items-center justify-between">
-              <h5 className=" font-bold leading-none text-gray-900 dark:text-white">
+              <h5 className=" font-bold leading-none text-gray-900 dark:text-white ">
                 Sports type count
               </h5>
             </div>
@@ -145,7 +148,7 @@ const Dashboard = ({ data, count }) => {
               <li className="pb-0 pt-3 sm:pt-4">
                 <div className="flex items-center space-x-4">
                   <div className="shrink-0">
-                    <FcBusinessman />
+                    <GiSoccerKick />
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
@@ -160,7 +163,7 @@ const Dashboard = ({ data, count }) => {
               <li className="pb-0 pt-3 sm:pt-4">
                 <div className="flex items-center space-x-4">
                   <div className="shrink-0">
-                    <FcBusinesswoman />
+                    <GiBoxingGlove />
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
@@ -175,10 +178,10 @@ const Dashboard = ({ data, count }) => {
               <li className="pb-0 pt-3 sm:pt-4">
                 <div className="flex items-center space-x-4">
                   <div className="shrink-0">
-                    <FcBusinesswoman />
+                    <MdOutlineSportsScore />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
+                    <p className="truncate text-sm font-medium text-gray-900 dark:text-white ">
                       Other sports
                     </p>
                   </div>
@@ -190,7 +193,6 @@ const Dashboard = ({ data, count }) => {
             </ul>
           </div>
         </div>
-        {/* <Chart /> */}
       </Card>
     </div>
   );

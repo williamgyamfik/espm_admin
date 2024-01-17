@@ -3,8 +3,8 @@ import { useState } from "react";
 import { supabase } from "@/supabaseClientLibrary/supabaseClient";
 import { useRouter } from "next/router";
 import { RiDeleteBin5Line } from "react-icons/ri";
-import Link from "next/link";
 import SearchBar from "./SearchBar";
+import Link from "next/link";
 
 import { SlControlEnd } from "react-icons/sl";
 import { SlControlStart } from "react-icons/sl";
@@ -108,8 +108,8 @@ const RegisteredUserTable = ({
                   }}
                 >
                   <td className="sm:hidden border-b-2 border-b-sky-500 w-full p-5 max-w-0 sm:w-auto sm:max-w-none">
-                    <dd className="mb-4">
-                      <b>First name:</b> {user.first_name}
+                    <dd className="mb-4 ">
+                      <b> First name:</b> {user.first_name}
                     </dd>
                     <dd className="mb-4">
                       <b>Last name:</b> {user.last_name}

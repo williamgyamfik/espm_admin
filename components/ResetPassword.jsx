@@ -2,8 +2,14 @@ import React from "react";
 import { useState } from "react";
 import { supabase } from "@/supabaseClientLibrary/supabaseClient";
 import Spinner from "../components/Spinner";
+import { useSession } from "@supabase/auth-helpers-react";
 
 const ResetPassword = () => {
+  const session = useSession();
+  console.log(session.user.email);
+
+  const adminEmail = session.user.email;
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -86,10 +92,11 @@ const ResetPassword = () => {
               type="email"
               name="email"
               id="email1"
-              className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="cursor-not-allowed bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               required=""
-              value={email}
+              value={adminEmail ? adminEmail : email}
               onChange={emailHandler}
+              disabled
             />
 
             <label

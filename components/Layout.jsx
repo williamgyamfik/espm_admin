@@ -10,11 +10,11 @@ const Layout = ({ children }) => {
   }, []);
 
   return (
-    <div className="h-screen flex flex-col">
+    <div className="h-screen flex flex-col ">
       <Navbar />
       <div className="flex flex-col sm:flex-row">
         <SideBar />
-        <div className="p-4 min-h-0 overflow-auto  flex flex-col flex-grow ml:64">
+        <div className="p-4 h-screen overflow-auto flex flex-col flex-grow sm:ml-64">
           {children}
         </div>
       </div>

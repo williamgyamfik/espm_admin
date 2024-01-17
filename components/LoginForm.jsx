@@ -53,9 +53,7 @@ const LoginForm = () => {
 
   return (
     <>
-      {error ? (
-        <Alert message="Sorry user not Authenticated" success={false} />
-      ) : null}
+      {error ? <Alert message="invalid credentials" success={false} /> : null}
 
       <section className="mt-10 ">
         <div className=" flex flex-col items-center justify-center px-6 py-8 sm:mt-0 mx-auto  lg:py-0">
