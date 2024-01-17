@@ -6,9 +6,8 @@ import { useSession } from "@supabase/auth-helpers-react";
 
 const ResetPassword = () => {
   const session = useSession();
-  console.log(session.user.email);
 
-  const adminEmail = session.user.email;
+  const adminEmail = session?.user?.email;
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
