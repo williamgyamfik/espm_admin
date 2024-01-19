@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "@supabase/auth-helpers-react";
 import LoginForm from "@/components/LoginForm";
+import Image from "next/image";
+import backgroundImage from "../public/images/loginBkgrd.jpg";
 
 export default function Home() {
   const router = useRouter();
@@ -17,5 +19,20 @@ export default function Home() {
     }
   }, [session, router]);
 
-  return <LoginForm />;
+  return (
+    <div className=" relative h-screen overflow-hidden">
+            <h1 className="text-md ml-2  text-white font-medium">Euphoria Sports Management Admin </h1>
+      <Image
+        className="-z-50"
+        src={backgroundImage}
+        alt="Background Image"
+        fill
+        style={{
+          objectFit: "cover",
+        }}
+        quality={100}
+      />
+        <LoginForm />
+    </div>
+  );
 }

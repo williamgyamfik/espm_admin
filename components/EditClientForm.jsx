@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import Spinner from "./Spinner";
 
 const EditClientForm = (props) => {
-  const [details, setDetails] = useState();
+  const [details, setDetails] = useState("");
   const [spinner, setSpinner] = useState(false);
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const EditClientForm = (props) => {
           })
           .eq("id", details.id)
           .select();
-        console.log(data);
+  
         if (error) {
           console.log(error.message);
         } else {
@@ -73,15 +73,15 @@ const EditClientForm = (props) => {
     );
   }
 
-  console.log(details, router);
+
 
   return (
     <div className=" flex flex-col flex-1 pt-4 sm:px-0 min-h-0 ">
       {/* <div className="w-84 shadow-xl bg-base-100"> */}
-      <div className="flex flex-1 flex-col p-2">
+      <div className="flex flex-1 flex-col p-2 shadow-xl">
         <h1 className="font-bold text-center">Edit Client form</h1>
         <div className="flex align-center justify-center mt-10 ">
-          <form className="mx-2 w-64 sm:w-full" onSubmit={submitHandler}>
+          <form className="mx-2  w-full " onSubmit={submitHandler}>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
               <div className="flex flex-col flex-wrap ">
                 <div className="mb-2 block">

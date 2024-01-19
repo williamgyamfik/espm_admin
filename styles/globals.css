@@ -3,30 +3,10 @@
 @tailwind utilities;
 
 html,
-body,* {
-   padding: 0;
+body,
+* {
+  padding: 0;
   margin: 0;
+
 }
 
-
-
-
-/* @media only screen and (max-width: 639px) {
-  .hide_sidebar {
-    display: none;
-   
- 
-  }
-}
-
-@media only screen and (max-width: 639px) {
-  .static_content {
-    position: relative;
-    z-index: 50;
-   
-  }
-  .pop_placement{
-bottom:35rem
-  }
-}
- */

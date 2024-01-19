@@ -5,12 +5,12 @@ const Alert = ({ message, success }) => {
     <div
       className={`${
         success
-          ? "text-green-800 dark:text-green-400 bg-green-50"
-          : "text-red-800 dark:text-red-400 bg-red-50"
-      } p-4 mb-4 text-sm  rounded-lg  dark:bg-gray-800 text-center`}
+          ? "text-green-800 dark:text-green-400 "
+          : "text-red-500 "
+      } p-4 mb-4 text-xl text-center`}
       role="alert"
     >
-      <span className="font-medium">{message}</span>
+      <span className="font-bold">{message}</span>
     </div>
   );
 };

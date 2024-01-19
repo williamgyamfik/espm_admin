@@ -9,7 +9,7 @@ import { GiBoxingGlove } from "react-icons/gi";
 import { MdOutlineSportsScore } from "react-icons/md";
 
 const Dashboard = ({ data, count }) => {
-  console.log(data.data, count);
+
 
   let maleCount = 0;
   let femaleCount = 0;
@@ -41,14 +41,7 @@ const Dashboard = ({ data, count }) => {
     }
   });
 
-  console.log(
-    maleCount,
-    femaleCount,
-    otherCount,
-    boxingCount,
-    soccerCount,
-    otherSportsCount
-  );
+
 
   return (
     <div className="p-5 flex flex-col sm:justify-center">

@@ -6,7 +6,7 @@ import { Alert } from "flowbite-react";
 
 const Index = ({ data, count }) => {
   const session = useSession();
-  console.log(session);
+
   const [sessionInfo, setSessionInfo] = useState(null);
 
   useEffect(() => {

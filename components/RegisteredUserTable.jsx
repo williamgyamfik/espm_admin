@@ -2,15 +2,9 @@ import React from "react";
 import { useState } from "react";
 import { supabase } from "@/supabaseClientLibrary/supabaseClient";
 import { useRouter } from "next/router";
-import { RiDeleteBin5Line } from "react-icons/ri";
 import SearchBar from "./SearchBar";
-import Link from "next/link";
 
-import { SlControlEnd } from "react-icons/sl";
-import { SlControlStart } from "react-icons/sl";
-import { TfiControlSkipForward } from "react-icons/tfi";
-import { TfiControlSkipBackward } from "react-icons/tfi";
-import { FaUserPlus } from "react-icons/fa";
+
 
 const RegisteredUserTable = ({
   data,

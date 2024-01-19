@@ -10,7 +10,7 @@ const Details = ({ data }) => {
   const clientDetails = data.find((client) => client.id === clientId);
 
   if (!clientDetails) {
-    return <div>....Loading</div>;
+    return <p>....Loading</p>;
   }
 
   return <ClientCard clientDetails={clientDetails} />;

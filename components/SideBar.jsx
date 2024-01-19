@@ -36,7 +36,7 @@ const SideBar = () => {
   }, []);
 
   const path = usePathname();
-  console.log(path);
+
 
   return (
     <>
