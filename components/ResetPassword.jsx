@@ -11,12 +11,13 @@ const ResetPassword = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [spinner, setSpinner] = useState(false);
 
+  // const [resetPasswordDetails,setResetPasswordDetails] = useState({
+
+  // })
+
   const submitHandler = (e) => {
     e.preventDefault();
     passwordResetHandler();
-    setEmail("");
-    setPassword("");
-    setConfirmPassword("");
   };
 
   const emailHandler = (e) => {
@@ -29,7 +30,7 @@ const ResetPassword = () => {
     setConfirmPassword(e.target.value);
   };
 
-  const passwordResetHandler = async () => {
+  const passwordResetHandler = async (e) => {
     if (
       !email.trim().includes("@") ||
       password.trim() !== confirmPassword.trim()
@@ -45,7 +46,7 @@ const ResetPassword = () => {
       if (data !== null) {
         router.push("/");
       }
-      (setConfirmPassword = ""), (setPassword = ""), (setEmail = "");
+      // (setConfirmPassword = ""), (setPassword = ""), (setEmail = "");
 
       if (error) {
         console.log(error.message);
