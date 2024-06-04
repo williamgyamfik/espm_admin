@@ -37,7 +37,6 @@ const SideBar = () => {
 
   const path = usePathname();
 
-
   return (
     <>
       <aside
@@ -137,6 +136,27 @@ const SideBar = () => {
                 <span className="flex-1 ms-3 whitespace-nowrap">
                   Reset Password
                 </span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/inbox"
+                className={`${
+                  path === "/inbox" ? "bg-green-200" : "null"
+                } flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group`}
+              >
+                <div className="flex items-center p-2 cursor-pointer text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                  <svg
+                    className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-500 dark:group-hover:text-white"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M4.98 4a.5.5 0 00-.39.188L1.54 8H6a.5.5 0 01.5.5 1.5 1.5 0 103 0A.5.5 0 0110 8h4.46l-3.05-3.812A.5.5 0 0011.02 4H4.98zm9.954 5H10.45a2.5 2.5 0 01-4.9 0H1.066l.32 2.562a.5.5 0 00.497.438h12.234a.5.5 0 00.496-.438L14.933 9zM3.809 3.563A1.5 1.5 0 014.981 3h6.038a1.5 1.5 0 011.172.563l3.7 4.625a.5.5 0 01.105.374l-.39 3.124A1.5 1.5 0 0114.117 13H1.883a1.5 1.5 0 01-1.489-1.314l-.39-3.124a.5.5 0 01.106-.374l3.7-4.625z" />
+                  </svg>
+                  <span className="flex-1 ms-3 whitespace-nowrap">Inbox</span>
+                </div>
               </Link>
             </li>
             <li>

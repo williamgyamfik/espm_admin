@@ -29,8 +29,6 @@ const LoginForm = () => {
         password,
       });
 
-    
-
       if (res.data.session) {
         setuserAuth(true);
       } else {
@@ -53,7 +51,13 @@ const LoginForm = () => {
 
   return (
     <>
-      {error ? <Alert message="Invalid credentials" success={false} /> : null}
+      {error ? (
+        <Alert
+          message="Invalid credentials"
+          success={false}
+          duplicateEmail="Cannot use duplicate email address"
+        />
+      ) : null}
 
       <section className="mt-10 ">
         <div className=" flex flex-col items-center justify-center px-6 py-8 sm:mt-0 mx-auto  lg:py-0">

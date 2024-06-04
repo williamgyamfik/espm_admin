@@ -80,7 +80,7 @@ const PasswordRecover = () => {
             Forgot your password?
           </h1>
           <p className="font-light text-gray-500 dark:text-gray-400">
-            Insert email and receive a link in your emeil to reset your password
+            Insert email and receive a link in your email to reset your password
           </p>
           <form
             className="mt-4 space-y-4 lg:mt-5 md:space-y-5"

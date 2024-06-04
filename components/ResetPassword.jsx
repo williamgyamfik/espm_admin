@@ -2,13 +2,10 @@ import React from "react";
 import { useState } from "react";
 import { supabase } from "@/supabaseClientLibrary/supabaseClient";
 import Spinner from "../components/Spinner";
-// import { useSession } from "@supabase/auth-helpers-react";
+import { useRouter } from "next/router";
 
 const ResetPassword = () => {
-  // const session = useSession();
-
-  // const adminEmail = session?.user?.email;
-
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -44,6 +41,11 @@ const ResetPassword = () => {
       const { data, error } = await supabase.auth.updateUser({
         password,
       });
+
+      if (data !== null) {
+        router.push("/");
+      }
+      (setConfirmPassword = ""), (setPassword = ""), (setEmail = "");
 
       if (error) {
         console.log(error.message);
